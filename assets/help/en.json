@@ -1,0 +1,177 @@
+{
+  "categories": [
+    {
+      "id": "account",
+      "title": "Account & Profile",
+      "icon": "person",
+      "items": [
+        {
+          "question": "How do I create an account?",
+          "answer": "You can create an account by tapping the 'Sign Up' button on the login screen. Fill in your name, email, and password, then tap 'Create Account' to get started."
+        },
+        {
+          "question": "How do I reset my password?",
+          "answer": "On the login screen, tap 'Forgot Password', enter your email address, and we'll send you a reset link. Click the link in the email to create a new password."
+        },
+        {
+          "question": "How do I update my profile information?",
+          "answer": "Go to Profile > tap on your profile picture or name > Edit Profile. You can update your name, email, phone number, and profile picture from there."
+        },
+        {
+          "question": "Can I change my email address?",
+          "answer": "Yes, you can change your email in Edit Profile. You'll need to verify the new email address before the change takes effect."
+        }
+      ]
+    },
+    {
+      "id": "orders",
+      "title": "Orders & Tracking",
+      "icon": "shopping_bag",
+      "items": [
+        {
+          "question": "How do I track my order?",
+          "answer": "You can track your order from Profile > Track Order or by going to My Orders and selecting the order you want to track. You'll see real-time updates on your order status."
+        },
+        {
+          "question": "How long does shipping take?",
+          "answer": "Standard shipping typically takes 3-7 business days. Express shipping takes 1-3 business days. Actual delivery times may vary based on your location."
+        },
+        {
+          "question": "Can I cancel my order?",
+          "answer": "Yes, you can cancel your order before it ships. Go to My Orders, select the order, and tap 'Cancel Order'. Once shipped, you'll need to request a return instead."
+        },
+        {
+          "question": "How do I return an item?",
+          "answer": "Go to My Orders, select the completed order, and tap 'Request Return'. Follow the instructions to initiate the return process. Items must be returned within 30 days of delivery."
+        },
+        {
+          "question": "What if my order arrives damaged?",
+          "answer": "If your order arrives damaged, please contact customer support immediately with photos of the damage. We'll arrange a replacement or refund as appropriate."
+        }
+      ]
+    },
+    {
+      "id": "payment",
+      "title": "Payment & Pricing",
+      "icon": "credit_card",
+      "items": [
+        {
+          "question": "What payment methods do you accept?",
+          "answer": "We accept major credit cards (Visa, Mastercard, American Express), debit cards, PayPal, and other digital payment methods depending on your region."
+        },
+        {
+          "question": "Is it safe to use my credit card?",
+          "answer": "Yes, we use industry-standard SSL encryption to protect your payment information. We never store your complete credit card details on our servers."
+        },
+        {
+          "question": "Can I save my payment information?",
+          "answer": "Yes, you can securely save your payment methods in your account for faster checkout. Your information is encrypted and stored securely."
+        },
+        {
+          "question": "When will I be charged?",
+          "answer": "Your payment method will be charged when you place your order. For pre-orders, you'll be charged when the item ships."
+        },
+        {
+          "question": "How do refunds work?",
+          "answer": "Refunds are processed to your original payment method within 5-10 business days after we receive your return. You'll receive an email confirmation once the refund is processed."
+        }
+      ]
+    },
+    {
+      "id": "shipping",
+      "title": "Shipping & Delivery",
+      "icon": "local_shipping",
+      "items": [
+        {
+          "question": "Do you ship internationally?",
+          "answer": "Yes, we ship to many countries worldwide. Shipping costs and delivery times vary by destination. Check the checkout page for specific details for your location."
+        },
+        {
+          "question": "How much does shipping cost?",
+          "answer": "Shipping costs depend on your location, order size, and shipping speed. Free shipping is available on orders over a certain amount (varies by region)."
+        },
+        {
+          "question": "Can I change my shipping address?",
+          "answer": "You can change your shipping address before the order ships. Go to My Orders, select the order, and tap 'Change Address'. After shipping, contact customer support for assistance."
+        },
+        {
+          "question": "What if I'm not home when my order arrives?",
+          "answer": "The delivery carrier will leave a notice with instructions on how to reschedule delivery or pick up your package from a local facility."
+        }
+      ]
+    },
+    {
+      "id": "products",
+      "title": "Products & Stock",
+      "icon": "inventory",
+      "items": [
+        {
+          "question": "How do I know if a product is in stock?",
+          "answer": "Product availability is shown on each product page. If an item is out of stock, you can tap 'Notify Me' to receive an alert when it's back in stock."
+        },
+        {
+          "question": "Can I reserve a product?",
+          "answer": "We don't offer product reservations, but you can add items to your wishlist to save them for later. Popular items may sell out quickly."
+        },
+        {
+          "question": "Are product reviews verified?",
+          "answer": "Yes, reviews are only allowed from customers who have purchased the product. This ensures authentic feedback from real buyers."
+        },
+        {
+          "question": "How do I compare products?",
+          "answer": "Tap the compare icon on product listings to add items to your comparison list. Then go to Compare (from your profile menu) to see them side-by-side."
+        }
+      ]
+    },
+    {
+      "id": "app",
+      "title": "App Features",
+      "icon": "phone_android",
+      "items": [
+        {
+          "question": "How do I enable notifications?",
+          "answer": "Go to your device Settings > Apps > MartFury > Notifications and enable notifications. You can customize notification preferences in the app settings."
+        },
+        {
+          "question": "Can I use the app offline?",
+          "answer": "Some features like viewing your wishlist and saved addresses work offline. However, browsing products and placing orders requires an internet connection."
+        },
+        {
+          "question": "How do I change the app language?",
+          "answer": "Go to Profile > tap on the current language > select your preferred language. The app will restart to apply the new language."
+        },
+        {
+          "question": "How do I switch between light and dark mode?",
+          "answer": "Go to Profile > tap on Theme > select Light, Dark, or System. The app theme will change immediately."
+        },
+        {
+          "question": "Can I use biometric login?",
+          "answer": "Yes, if you're logged in, go to Settings > Security and enable Face ID or Touch ID. Your device must support biometric authentication."
+        }
+      ]
+    },
+    {
+      "id": "support",
+      "title": "Customer Support",
+      "icon": "support_agent",
+      "items": [
+        {
+          "question": "How do I contact customer support?",
+          "answer": "You can reach our support team through Profile > Customer Service. We're available 24/7 via chat, email, or phone."
+        },
+        {
+          "question": "What are your business hours?",
+          "answer": "Our customer support is available 24 hours a day, 7 days a week to assist you with any questions or concerns."
+        },
+        {
+          "question": "How long does it take to get a response?",
+          "answer": "We typically respond to inquiries within 24 hours. For urgent matters, please use our live chat for immediate assistance."
+        },
+        {
+          "question": "Can I schedule a callback?",
+          "answer": "Yes, when you contact customer support, you can request a callback at a time that's convenient for you."
+        }
+      ]
+    }
+  ]
+}
