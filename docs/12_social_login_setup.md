@@ -1,10 +1,10 @@
 # Social Login Setup (Google, Apple, Facebook, Twitter)
 
-This guide shows how to enable and configure every social login provider supported by the MartFury mobile app. Follow the steps to collect credentials, wire them into the project, and test the full authentication flow without touching any code.
+This guide shows how to enable and configure every social login provider supported by the Soujanya mobile app. Follow the steps to collect credentials, wire them into the project, and test the full authentication flow without touching any code.
 
 ## Prerequisites
 
-- A working MartFury Flutter project connected to your Botble backend
+- A working Soujanya Flutter project connected to your Botble backend
 - Access to the relevant developer portals:
   - [Google Cloud Console](https://console.cloud.google.com)
   - [Apple Developer](https://developer.apple.com/)
@@ -38,7 +38,7 @@ This guide shows how to enable and configure every social login provider support
 ### Twitter (X)
 
 1. In the Twitter Developer Portal, create a project/app.
-2. Enable 3-legged OAuth and set callback URLs (e.g., `martfury://twitter-auth`).
+2. Enable 3-legged OAuth and set callback URLs (e.g., `Soujanya://twitter-auth`).
 3. Copy the **API Key** (consumer key) and **API Secret Key** (consumer secret).
 
 ## Step 2: Configure the App
@@ -100,7 +100,7 @@ FACEBOOK_CLIENT_TOKEN=your_facebook_client_token
 ENABLE_TWITTER_SIGN_IN=true
 TWITTER_CONSUMER_KEY=your_twitter_consumer_key
 TWITTER_CONSUMER_SECRET=your_twitter_consumer_secret
-TWITTER_REDIRECT_URI=martfury://twitter-auth
+TWITTER_REDIRECT_URI=Soujanya://twitter-auth
 ```
 
 By default, Google Sign-In is enabled if credentials exist, while Apple, Facebook, and Twitter remain disabled until explicitly toggled on.
@@ -114,7 +114,7 @@ Ensure native projects include the required entries:
 | Google | `Info.plist` contains the Web Client ID scheme | `AndroidManifest.xml` includes `SignInHubActivity` and manifest placeholders |
 | Apple | Add Sign in with Apple capability | Callback activity (`SignInWithAppleCallback`) with scheme `signinwithapple` |
 | Facebook | URL scheme `fbYOUR_APP_ID`, `FacebookAppID`, `FacebookClientToken`, queries schemes | `FacebookActivity` + `ApplicationId`/`ClientToken` meta-data, manifest placeholders |
-| Twitter | URL schemes (`twitterkit-...`, `martfury`) | `OAuthActivity`, consumer key/secret meta-data, intent-filter with scheme `martfury` |
+| Twitter | URL schemes (`twitterkit-...`, `Soujanya`) | `OAuthActivity`, consumer key/secret meta-data, intent-filter with scheme `Soujanya` |
 
 Refer to the native platform docs for any additional steps (entitlements, string resources, SHA hashes, etc.).
 

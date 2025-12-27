@@ -1,8 +1,8 @@
-# MartFury Flutter App Overview
+# Soujanya Flutter App Overview
 
-## What is MartFury Flutter App?
+## What is Soujanya Flutter App?
 
-MartFury is a complete mobile e-commerce application built with Flutter that connects to your Botble e-commerce website. It provides your customers with a native mobile shopping experience on both Android and iOS devices.
+Soujanya is a complete mobile e-commerce application built with Flutter that connects to your Botble e-commerce website. It provides your customers with a native mobile shopping experience on both Android and iOS devices.
 
 ## 📱 Key Features
 
@@ -52,8 +52,8 @@ MartFury is a complete mobile e-commerce application built with Flutter that con
 ### 📧 **Email**: contact@botble.com
 ### 🌐 **Website**: https://botble.com
 ### 🎫 **Support Center**: https://botble.ticksy.com
-### 📖 **Online Documentation**: https://docs.botble.com/martfury-flutter
-### 🎮 **Backend Demo**: https://martfury.botble.com
+### 📖 **Online Documentation**: https://docs.botble.com/Soujanya-flutter
+### 🎮 **Backend Demo**: https://Soujanya.botble.com
 ### 📋 **API Documentation**: https://ecommerce-api.botble.com/docs
 
 ## 🎯 Who Is This For?

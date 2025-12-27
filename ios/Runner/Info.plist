@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>MartFury</string>
+	<string>Soujanya</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>martfury</string>
+	<string>soujanya</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -57,10 +57,10 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<!-- Registered Callback URLs in TwitterApp -->
-				<string>martfury</string>
+				<string>soujanya</string>
 				<string>fbYOUR_FACEBOOK_APP_ID</string>
 				<string>YOUR_GOOGLE_CLIENT_ID</string>
-				<string>martfury</string>
+				<string>soujanya</string>
 			</array>
 		</dict>
 	</array>
@@ -69,7 +69,7 @@
 	<key>FacebookClientToken</key>
 	<string>YOUR_FACEBOOK_APP_ID</string>
 	<key>FacebookDisplayName</key>
-	<string>MartFury</string>
+	<string>soujanya</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>

@@ -1,6 +1,6 @@
 # Frequently Asked Questions
 
-Simple answers to common questions about your MartFury mobile app.
+Simple answers to common questions about your Soujanya mobile app.
 
 ## 🤔 Basic Questions
 

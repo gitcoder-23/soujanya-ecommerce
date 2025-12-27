@@ -1,6 +1,6 @@
 # Upgrading Your App
 
-Simple guide to update your MartFury app to the latest version.
+Simple guide to update your Soujanya app to the latest version.
 
 ## 🚨 Before You Start
 
@@ -8,7 +8,7 @@ Simple guide to update your MartFury app to the latest version.
 
 **Save your current app first:**
 1. Copy your entire app folder to a safe place
-2. Name it something like "martfury-backup-old-version"
+2. Name it something like "Soujanya-backup-old-version"
 3. This way you can go back if something goes wrong
 
 **Save your settings:**

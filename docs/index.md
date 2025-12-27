@@ -1,8 +1,8 @@
-# MartFury - Flutter E-commerce App for Botble
+# Soujanya - Flutter E-commerce App for Botble
 
 ## Introduction
 
-MartFury is a feature-rich Flutter mobile application designed to work seamlessly with Botble E-commerce backend. This app provides a complete e-commerce experience with a modern UI and seamless integration with Botble's API. It serves as the mobile client for the [MartFury Multipurpose Laravel Ecommerce System](https://codecanyon.net/item/martfury-multipurpose-laravel-ecommerce-system/29925223).
+Soujanya is a feature-rich Flutter mobile application designed to work seamlessly with Botble E-commerce backend. This app provides a complete e-commerce experience with a modern UI and seamless integration with Botble's API. It serves as the mobile client for the [Soujanya Multipurpose Laravel Ecommerce System](https://codecanyon.net/item/Soujanya-multipurpose-laravel-ecommerce-system/29925223).
 
 The app offers a comprehensive mobile shopping experience with intuitive navigation, secure authentication, advanced product browsing, smart shopping cart management, and complete order tracking capabilities.
 
@@ -10,7 +10,7 @@ The app offers a comprehensive mobile shopping experience with intuitive navigat
 
 **New to the app? Start here:**
 
-1. **[App Overview](overview.md)** - What is MartFury and how it works (5 min read)
+1. **[App Overview](overview.md)** - What is Soujanya and how it works (5 min read)
 2. **[Installation](installation.md)** - Set up your development environment (30 min)
 3. **[Configuration](configuration.md)** - Connect your app to your website (15 min)
 4. **[Development Guide](development.md)** - Learn to customize your app
@@ -131,7 +131,7 @@ The app offers a comprehensive mobile shopping experience with intuitive navigat
 
 ## Integration with Botble E-commerce
 
-This Flutter app is specifically designed to work with the [Botble MartFury E-commerce System](https://codecanyon.net/item/martfury-multipurpose-laravel-ecommerce-system/29925223), which provides:
+This Flutter app is specifically designed to work with the [Botble Soujanya E-commerce System](https://codecanyon.net/item/Soujanya-multipurpose-laravel-ecommerce-system/29925223), which provides:
 
 - **Comprehensive Backend**: Full-featured e-commerce backend with admin panel
 - **API Endpoints**: RESTful API for mobile integration
@@ -176,12 +176,12 @@ The app integrates with the Botble E-commerce API, documented at [https://ecomme
 - **📧 Email**: contact@botble.com
 - **🌐 Website**: https://botble.com
 - **🎫 Support Center**: https://botble.ticksy.com
-- **📖 Online Documentation**: https://docs.botble.com/martfury-flutter
+- **📖 Online Documentation**: https://docs.botble.com/Soujanya-flutter
 
 ### **Resources:**
-- **🎮 Backend Demo**: https://martfury.botble.com
+- **🎮 Backend Demo**: https://Soujanya.botble.com
 - **📋 API Documentation**: https://ecommerce-api.botble.com/docs
-- **🛒 Backend System**: [MartFury Laravel E-commerce](https://codecanyon.net/item/martfury-multipurpose-laravel-ecommerce-system/29925223)
+- **🛒 Backend System**: [Soujanya Laravel E-commerce](https://codecanyon.net/item/Soujanya-multipurpose-laravel-ecommerce-system/29925223)
 
 ## Botble Team
 

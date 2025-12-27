@@ -1,6 +1,6 @@
 # Guest Checkout Configuration
 
-This document explains how to configure the guest checkout feature in the MartFury Flutter app.
+This document explains how to configure the guest checkout feature in the Soujanya Flutter app.
 
 ## Overview
 

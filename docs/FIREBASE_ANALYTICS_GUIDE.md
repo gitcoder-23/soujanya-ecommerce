@@ -1,4 +1,4 @@
-# Firebase Analytics Integration Guide for MartFury
+# Firebase Analytics Integration Guide for Soujanya
 
 ## What is Firebase Analytics?
 
@@ -27,7 +27,7 @@ The `google-services.json` file (for Android) and `GoogleService-Info.plist` fil
 
 1. **Single Configuration File**: When you set up Firebase for your app, you download one configuration file that works for ALL Firebase services.
 
-2. **Already Configured**: Since MartFury already has FCM for push notifications, Firebase Analytics is automatically configured. No additional setup needed!
+2. **Already Configured**: Since Soujanya already has FCM for push notifications, Firebase Analytics is automatically configured. No additional setup needed!
 
 3. **File Locations**:
    - Android: `/android/app/google-services.json`
@@ -43,7 +43,7 @@ To confirm Firebase Analytics is properly configured:
 
 2. **Check Firebase Project**:
    - Go to [Firebase Console](https://console.firebase.google.com)
-   - Select your MartFury project
+   - Select your Soujanya project
    - Click on Analytics in the left menu
    - If you see the Analytics dashboard, it's configured correctly
 
@@ -60,7 +60,7 @@ To confirm Firebase Analytics is properly configured:
 
 ## What Can You Track?
 
-Our MartFury app now automatically tracks these important activities:
+Our Soujanya app now automatically tracks these important activities:
 
 ### 1. **User Actions**
 - When someone signs up for a new account
@@ -91,7 +91,7 @@ The app tracks which screens users visit most:
 1. Open your web browser
 2. Go to [Firebase Console](https://console.firebase.google.com)
 3. Sign in with your Google account
-4. Select your "MartFury" project
+4. Select your "Soujanya" project
 
 ### Step 2: Navigate to Analytics
 1. In the left menu, click on **"Analytics"**

@@ -1,15 +1,15 @@
 // Documentation data structure matching sidebar.ts
 const docsData = {
-    sections: [
-        {
-            id: 'overview',
-            title: 'Overview',
-            content: `
-                <h1>MartFury - Flutter E-commerce App for Botble</h1>
+  sections: [
+    {
+      id: "overview",
+      title: "Overview",
+      content: `
+                <h1>Soujanya - Flutter E-commerce App for Botble</h1>
 
                 <h2>Introduction</h2>
 
-                <p>MartFury is a feature-rich Flutter mobile application designed to work seamlessly with Botble E-commerce backend. This app provides a complete e-commerce experience with a modern UI and seamless integration with Botble's API. It serves as the mobile client for the <a href="https://codecanyon.net/item/martfury-multipurpose-laravel-ecommerce-system/29925223" target="_blank">MartFury Multipurpose Laravel Ecommerce System</a>.</p>
+                <p>Soujanya is a feature-rich Flutter mobile application designed to work seamlessly with Botble E-commerce backend. This app provides a complete e-commerce experience with a modern UI and seamless integration with Botble's API. It serves as the mobile client for the <a href="https://codecanyon.net/item/Soujanya-multipurpose-laravel-ecommerce-system/29925223" target="_blank">Soujanya Multipurpose Laravel Ecommerce System</a>.</p>
 
                 <p>The app offers a comprehensive mobile shopping experience with intuitive navigation, secure authentication, advanced product browsing, smart shopping cart management, and complete order tracking capabilities.</p>
 
@@ -18,7 +18,7 @@ const docsData = {
                 <p><strong>New to the app? Start here:</strong></p>
 
                 <ol>
-                    <li><strong>App Overview</strong> - What is MartFury and how it works (5 min read)</li>
+                    <li><strong>App Overview</strong> - What is Soujanya and how it works (5 min read)</li>
                     <li><strong>Installation</strong> - Set up your development environment (30 min)</li>
                     <li><strong>Configuration</strong> - Connect your app to your website (15 min)</li>
                     <li><strong>Development Guide</strong> - Learn to customize your app</li>
@@ -176,7 +176,7 @@ const docsData = {
 
                 <h2>Integration with Botble E-commerce</h2>
 
-                <p>This Flutter app is specifically designed to work with the <a href="https://codecanyon.net/item/martfury-multipurpose-laravel-ecommerce-system/29925223" target="_blank">Botble MartFury E-commerce System</a>, which provides:</p>
+                <p>This Flutter app is specifically designed to work with the <a href="https://codecanyon.net/item/Soujanya-multipurpose-laravel-ecommerce-system/29925223" target="_blank">Botble Soujanya E-commerce System</a>, which provides:</p>
 
                 <ul>
                     <li><strong>Comprehensive Backend</strong>: Full-featured e-commerce backend with admin panel</li>
@@ -209,30 +209,30 @@ const docsData = {
                     <li><strong>📧 Email</strong>: contact@botble.com</li>
                     <li><strong>🌐 Website</strong>: https://botble.com</li>
                     <li><strong>🎫 Support Center</strong>: https://botble.ticksy.com</li>
-                    <li><strong>📖 Online Documentation</strong>: https://docs.botble.com/martfury-flutter</li>
+                    <li><strong>📖 Online Documentation</strong>: https://docs.botble.com/Soujanya-flutter</li>
                 </ul>
 
                 <h3><strong>Resources:</strong></h3>
                 <ul>
-                    <li><strong>🎮 Backend Demo</strong>: https://martfury.botble.com</li>
+                    <li><strong>🎮 Backend Demo</strong>: https://Soujanya.botble.com</li>
                     <li><strong>📋 API Documentation</strong>: https://ecommerce-api.botble.com/docs</li>
-                    <li><strong>🛒 Backend System</strong>: <a href="https://codecanyon.net/item/martfury-multipurpose-laravel-ecommerce-system/29925223" target="_blank">MartFury Laravel E-commerce</a></li>
+                    <li><strong>🛒 Backend System</strong>: <a href="https://codecanyon.net/item/Soujanya-multipurpose-laravel-ecommerce-system/29925223" target="_blank">Soujanya Laravel E-commerce</a></li>
                 </ul>
 
                 <h2>Botble Team</h2>
 
                 <p>Developed by the Botble team. Visit us at <a href="https://botble.com" target="_blank">botble.com</a>.</p>
-            `
-        },
-        {
-            id: 'app-overview',
-            title: 'App Overview',
-            content: `
-                <h1>MartFury Flutter App Overview</h1>
+            `,
+    },
+    {
+      id: "app-overview",
+      title: "App Overview",
+      content: `
+                <h1>Soujanya Flutter App Overview</h1>
 
-                <h2>What is MartFury Flutter App?</h2>
+                <h2>What is Soujanya Flutter App?</h2>
 
-                <p>MartFury is a complete mobile e-commerce application built with Flutter that connects to your Botble e-commerce website. It provides your customers with a native mobile shopping experience on both Android and iOS devices.</p>
+                <p>Soujanya is a complete mobile e-commerce application built with Flutter that connects to your Botble e-commerce website. It provides your customers with a native mobile shopping experience on both Android and iOS devices.</p>
 
                 <h2>📱 Key Features</h2>
 
@@ -294,8 +294,8 @@ const docsData = {
                 <h3>📧 <strong>Email</strong>: contact@botble.com</h3>
                 <h3>🌐 <strong>Website</strong>: https://botble.com</h3>
                 <h3>🎫 <strong>Support Center</strong>: https://botble.ticksy.com</h3>
-                <h3>📖 <strong>Online Documentation</strong>: https://docs.botble.com/martfury-flutter</h3>
-                <h3>🎮 <strong>Backend Demo</strong>: https://martfury.botble.com</h3>
+                <h3>📖 <strong>Online Documentation</strong>: https://docs.botble.com/Soujanya-flutter</h3>
+                <h3>🎮 <strong>Backend Demo</strong>: https://Soujanya.botble.com</h3>
                 <h3>📋 <strong>API Documentation</strong>: https://ecommerce-api.botble.com/docs</h3>
 
                 <h2>🎯 Who Is This For?</h2>
@@ -344,19 +344,19 @@ const docsData = {
                 </ul>
 
                 <p><strong>Remember</strong>: You're not alone! We're here to help you succeed with your mobile app.</p>
-            `
-        },
+            `,
+    },
+    {
+      id: "getting-started",
+      title: "Getting Started",
+      subsections: [
         {
-            id: 'getting-started',
-            title: 'Getting Started',
-            subsections: [
-                {
-                    id: 'installation',
-                    title: 'Installation',
-                    content: `
+          id: "installation",
+          title: "Installation",
+          content: `
                         <h1>Installation Guide</h1>
 
-                        <p>Simple steps to get your MartFury app running on your computer.</p>
+                        <p>Simple steps to get your Soujanya app running on your computer.</p>
 
                         <h2>🚀 Quick Start</h2>
 
@@ -377,7 +377,7 @@ const docsData = {
 
                         <h3>Step 2: Get the App Code</h3>
                         <ol>
-                            <li>Download your MartFury app files</li>
+                            <li>Download your Soujanya app files</li>
                             <li>Extract them to a folder on your computer</li>
                             <li>Remember where you put this folder!</li>
                         </ol>
@@ -386,7 +386,7 @@ const docsData = {
                         <ol>
                             <li>Open Terminal (Mac/Linux) or Command Prompt (Windows)</li>
                             <li>Navigate to your app folder:
-                                <pre><code>cd path/to/your/martfury-app</code></pre>
+                                <pre><code>cd path/to/your/Soujanya-app</code></pre>
                             </li>
                             <li>Install dependencies:
                                 <pre><code>flutter pub get</code></pre>
@@ -451,12 +451,12 @@ flutter run</code></pre>
                         </ul>
 
                         <p><strong>Remember</strong>: Don't worry if this seems complicated at first. Most people get it working within an hour, and we're here to help!</p>
-                    `
-                },
-                {
-                    id: 'configuration',
-                    title: 'Configuration',
-                    content: `
+                    `,
+        },
+        {
+          id: "configuration",
+          title: "Configuration",
+          content: `
                         <h1>Configuration Guide</h1>
 
                         <p>How to connect your app to your website and customize basic settings.</p>
@@ -593,15 +593,15 @@ flutter run</code></pre>
                         </ul>
 
                         <p>For more help, check the Troubleshooting Guide.</p>
-                    `
-                },
-                {
-                    id: 'development',
-                    title: 'Development Guide',
-                    content: `
+                    `,
+        },
+        {
+          id: "development",
+          title: "Development Guide",
+          content: `
                         <h1>Development Guide</h1>
 
-                        <p>This guide helps you customize the MartFury Flutter app. No advanced Flutter knowledge required!</p>
+                        <p>This guide helps you customize the Soujanya Flutter app. No advanced Flutter knowledge required!</p>
 
                         <h2>Understanding the App Structure</h2>
 
@@ -819,12 +819,12 @@ flutter run</code></pre>
                         </ol>
 
                         <p>Remember: You don't need to be a Flutter expert to customize this app! Start with simple changes like colors and text, then gradually try more advanced features.</p>
-                    `
-                },
-                {
-                    id: 'api-integration',
-                    title: 'API Integration',
-                    content: `
+                    `,
+        },
+        {
+          id: "api-integration",
+          title: "API Integration",
+          content: `
                         <h1>API Integration Guide</h1>
 
                         <p>Simple guide to connect your app with your website's API. No technical expertise required!</p>
@@ -1047,18 +1047,18 @@ flutter run</code></pre>
                         </ul>
 
                         <p>Remember: API integration connects your mobile app to your website. If you're not technical, don't hesitate to ask your developer for help!</p>
-                    `
-                }
-            ]
+                    `,
         },
+      ],
+    },
+    {
+      id: "quick-setup",
+      title: "Quick Setup (5-15 min each)",
+      subsections: [
         {
-            id: 'quick-setup',
-            title: 'Quick Setup (5-15 min each)',
-            subsections: [
-                {
-                    id: 'theme-colors',
-                    title: '1. Theme Colors',
-                    content: `
+          id: "theme-colors",
+          title: "1. Theme Colors",
+          content: `
                         <h1>Changing Theme Colors</h1>
 
                         <h2>Primary Colors</h2>
@@ -1091,12 +1091,12 @@ static const Color secondaryColor = Color(0xFFYOUR_COLOR);</code></pre>
                         <h2>Screenshots</h2>
                         <img src="images/primary-color-config.png" alt="Theme Colors Configuration" />
                         <p><em>Example of theme color configuration in the app</em></p>
-                    `
-                },
-                {
-                    id: 'app-font',
-                    title: '2. App Font',
-                    content: `
+                    `,
+        },
+        {
+          id: "app-font",
+          title: "2. App Font",
+          content: `
                         <h1>Changing App Font</h1>
 
                         <p>The app uses Google Fonts with Inter as the default font. To modify the font:</p>
@@ -1113,12 +1113,12 @@ static const Color secondaryColor = Color(0xFFYOUR_COLOR);</code></pre>
                         <h2>Screenshots</h2>
                         <img src="images/primary-font-config.png" alt="Font Configuration" />
                         <p><em>Example of font configuration in the app</em></p>
-                    `
-                },
-                {
-                    id: 'ad-keys',
-                    title: '3. Ad Keys',
-                    content: `
+                    `,
+        },
+        {
+          id: "ad-keys",
+          title: "3. Ad Keys",
+          content: `
                         <h1>Setting Up Ad Keys</h1>
 
                         <h2>Home Screen Ad Configuration</h2>
@@ -1186,12 +1186,12 @@ static String smallAdKey2 = dotenv.env['SMALL_AD_KEY_2'] ?? 'YOUR_SMALL_AD_KEY_2
                             <li>Verify that the API endpoint is accessible and returning ad data</li>
                             <li>Check the app logs for any ad-related error messages</li>
                         </ul>
-                    `
-                },
-                {
-                    id: 'app-name',
-                    title: '4. App Name',
-                    content: `
+                    `,
+        },
+        {
+          id: "app-name",
+          title: "4. App Name",
+          content: `
                         <h1>Changing App Name</h1>
 
                         <img src="images/change-app-name.png" alt="App name" />
@@ -1219,12 +1219,12 @@ static String smallAdKey2 = dotenv.env['SMALL_AD_KEY_2'] ?? 'YOUR_SMALL_AD_KEY_2
 &lt;string&gt;Your New App Name&lt;/string&gt;</code></pre>
                             </li>
                         </ol>
-                    `
-                },
-                {
-                    id: 'app-logo',
-                    title: '5. App Logo',
-                    content: `
+                    `,
+        },
+        {
+          id: "app-logo",
+          title: "5. App Logo",
+          content: `
                         <h1>Changing App Logo</h1>
 
                         <img src="images/change-app-logo.png" alt="App logo" />
@@ -1260,12 +1260,12 @@ static String smallAdKey2 = dotenv.env['SMALL_AD_KEY_2'] ?? 'YOUR_SMALL_AD_KEY_2
 &lt;string&gt;AppIcon&lt;/string&gt;</code></pre>
                             </li>
                         </ol>
-                    `
-                },
-                {
-                    id: 'api-base-url',
-                    title: '6. API Base URL',
-                    content: `
+                    `,
+        },
+        {
+          id: "api-base-url",
+          title: "6. API Base URL",
+          content: `
                         <h1>Configuring API Base URL</h1>
 
                         <p>The API base URL is used to connect your app to the backend server. To configure it:</p>
@@ -1292,12 +1292,12 @@ static String smallAdKey2 = dotenv.env['SMALL_AD_KEY_2'] ?? 'YOUR_SMALL_AD_KEY_2
                             <li>The URL should be accessible from your app's target devices</li>
                             <li>For local development, you can use <code>http://localhost:8000</code> or your local IP address</li>
                         </ul>
-                    `
-                },
-                {
-                    id: 'translations',
-                    title: '7. Translations',
-                    content: `
+                    `,
+        },
+        {
+          id: "translations",
+          title: "7. Translations",
+          content: `
                         <h1>Configuring Translations</h1>
 
                         <p>The app uses <code>easy_localization</code> for managing multiple languages. Translations are stored in JSON files under the <code>assets/translations</code> directory.</p>
@@ -1371,12 +1371,12 @@ Text('items_count'.plural(5))</code></pre>
                             <li>Consider RTL (Right-to-Left) support for languages like Arabic</li>
                             <li>Keep translation files in sync across all languages</li>
                         </ul>
-                    `
-                },
-                {
-                    id: 'running-app',
-                    title: '8. Running App',
-                    content: `
+                    `,
+        },
+        {
+          id: "running-app",
+          title: "8. Running App",
+          content: `
                         <h1>Running the App</h1>
 
                         <h2>Development Mode</h2>
@@ -1421,12 +1421,12 @@ flutter run</code></pre>
                                 </ul>
                             </li>
                         </ol>
-                    `
-                },
-                {
-                    id: 'deploying-app',
-                    title: '9. Deploying App',
-                    content: `
+                    `,
+        },
+        {
+          id: "deploying-app",
+          title: "9. Deploying App",
+          content: `
                         <h1>Deploying the App</h1>
 
                         <h2>Android Deployment</h2>
@@ -1507,12 +1507,12 @@ android {
                             <li>Keep track of version numbers</li>
                             <li>Test on multiple devices before release</li>
                         </ul>
-                    `
-                },
-                {
-                    id: 'version-management',
-                    title: '10. Version Management',
-                    content: `
+                    `,
+        },
+        {
+          id: "version-management",
+          title: "10. Version Management",
+          content: `
                         <h1>Version Management</h1>
 
                         <h2>Android Version</h2>
@@ -1602,12 +1602,12 @@ git push origin v1.0.0</code></pre>
 - Performance improvements</code></pre>
                             </li>
                         </ol>
-                    `
-                },
-                {
-                    id: 'profile-links',
-                    title: '11. Profile Links',
-                    content: `
+                    `,
+        },
+        {
+          id: "profile-links",
+          title: "11. Profile Links",
+          content: `
                         <h1>Profile Screen External Links</h1>
 
                         <img src="images/profile-links.png" alt="Profile links" />
@@ -1710,18 +1710,18 @@ static const String blogUrl = 'https://ecommerce-api.botble.com/blog';</code></p
     );
   }
 }</code></pre>
-                    `
-                }
-            ]
+                    `,
         },
+      ],
+    },
+    {
+      id: "social-login",
+      title: "Social Login (30-60 min each)",
+      subsections: [
         {
-            id: 'social-login',
-            title: 'Social Login (30-60 min each)',
-            subsections: [
-                {
-                    id: 'twitter-login',
-                    title: '12. Twitter/X Login',
-                    content: `
+          id: "twitter-login",
+          title: "12. Twitter/X Login",
+          content: `
                         <h1>Twitter/X Login Setup</h1>
 
                         <h2>Prerequisites</h2>
@@ -1741,7 +1741,7 @@ static const String blogUrl = 'https://ecommerce-api.botble.com/blog';</code></p
                         <p>Create or update your <code>.env</code> file with the following variables:</p>
                         <pre><code>TWITTER_CONSUMER_KEY=your_twitter_consumer_key
 TWITTER_CONSUMER_SECRET=your_twitter_consumer_secret
-TWITTER_REDIRECT_URI=martfury://twitter-auth</code></pre>
+TWITTER_REDIRECT_URI=Soujanya://twitter-auth</code></pre>
 
                         <h2>Step 3: Test Integration</h2>
                         <ol>
@@ -1749,12 +1749,12 @@ TWITTER_REDIRECT_URI=martfury://twitter-auth</code></pre>
                             <li>Try Twitter login</li>
                             <li>Verify authentication works</li>
                         </ol>
-                    `
-                },
-                {
-                    id: 'apple-login',
-                    title: '13. Apple Sign-In',
-                    content: `
+                    `,
+        },
+        {
+          id: "apple-login",
+          title: "13. Apple Sign-In",
+          content: `
                         <h1>Apple Sign-In Setup</h1>
 
                         <h2>Prerequisites</h2>
@@ -1782,12 +1782,12 @@ APPLE_KEY_ID=your_apple_key_id</code></pre>
                             <li>Try Apple Sign-In</li>
                             <li>Verify authentication works</li>
                         </ol>
-                    `
-                },
-                {
-                    id: 'google-login',
-                    title: '14. Google Login',
-                    content: `
+                    `,
+        },
+        {
+          id: "google-login",
+          title: "14. Google Login",
+          content: `
                         <h1>Google Login Setup</h1>
 
                         <h2>Prerequisites</h2>
@@ -1823,12 +1823,12 @@ GOOGLE_SERVER_CLIENT_ID=your_google_server_client_id</code></pre>
                             <li>Try Google login</li>
                             <li>Verify authentication works</li>
                         </ol>
-                    `
-                },
-                {
-                    id: 'facebook-login',
-                    title: '15. Facebook Login',
-                    content: `
+                    `,
+        },
+        {
+          id: "facebook-login",
+          title: "15. Facebook Login",
+          content: `
                         <h1>Facebook Login Setup</h1>
 
                         <h2>Prerequisites</h2>
@@ -1865,21 +1865,21 @@ FACEBOOK_CLIENT_TOKEN=your_facebook_client_token</code></pre>
                             <li>Try Facebook login</li>
                             <li>Verify authentication works</li>
                         </ol>
-                    `
-                }
-            ]
+                    `,
         },
+      ],
+    },
+    {
+      id: "help-support",
+      title: "Help & Support",
+      subsections: [
         {
-            id: 'help-support',
-            title: 'Help & Support',
-            subsections: [
-                {
-                    id: 'support',
-                    title: 'Support & Contact',
-                    content: `
+          id: "support",
+          title: "Support & Contact",
+          content: `
                         <h1>Support & Contact Information</h1>
 
-                        <p>Need help with your MartFury Flutter app? We're here to support you every step of the way!</p>
+                        <p>Need help with your Soujanya Flutter app? We're here to support you every step of the way!</p>
 
                         <h2>🆘 Quick Help</h2>
 
@@ -1894,7 +1894,7 @@ FACEBOOK_CLIENT_TOKEN=your_facebook_client_token</code></pre>
                         <h2>📞 Contact Options</h2>
 
                         <h3>📖 <strong>Read the Documentation</strong></h3>
-                        <p><strong>https://docs.botble.com/martfury-flutter</strong></p>
+                        <p><strong>https://docs.botble.com/Soujanya-flutter</strong></p>
                         <ul>
                             <li>Complete guides and tutorials</li>
                             <li>Step-by-step instructions</li>
@@ -1990,7 +1990,7 @@ FACEBOOK_CLIENT_TOKEN=your_facebook_client_token</code></pre>
                         <h3>🌐 <strong>External Resources</strong></h3>
                         <ul>
                             <li><strong><a href="https://flutter.dev/docs" target="_blank">Flutter Documentation</a></strong> - Learn Flutter</li>
-                            <li><strong><a href="https://martfury.botble.com" target="_blank">Botble Backend Demo</a></strong> - See how it works</li>
+                            <li><strong><a href="https://Soujanya.botble.com" target="_blank">Botble Backend Demo</a></strong> - See how it works</li>
                             <li><strong><a href="https://ecommerce-api.botble.com/docs" target="_blank">API Documentation</a></strong> - Technical details</li>
                         </ul>
 
@@ -2021,15 +2021,15 @@ FACEBOOK_CLIENT_TOKEN=your_facebook_client_token</code></pre>
                         </ul>
 
                         <p><strong>Remember</strong>: Your success is our success! We're invested in helping you create an amazing mobile app for your customers.</p>
-                    `
-                },
-                {
-                    id: 'faq',
-                    title: 'FAQ',
-                    content: `
+                    `,
+        },
+        {
+          id: "faq",
+          title: "FAQ",
+          content: `
                         <h1>Frequently Asked Questions</h1>
 
-                        <p>Simple answers to common questions about your MartFury mobile app.</p>
+                        <p>Simple answers to common questions about your Soujanya mobile app.</p>
 
                         <h2>🤔 Basic Questions</h2>
 
@@ -2137,12 +2137,12 @@ FACEBOOK_CLIENT_TOKEN=your_facebook_client_token</code></pre>
                         </ul>
 
                         <p><strong>Remember:</strong> Most problems are simple to fix! Don't worry if you're not technical - the guides are written for beginners.</p>
-                    `
-                },
-                {
-                    id: 'troubleshooting',
-                    title: 'Troubleshooting',
-                    content: `
+                    `,
+        },
+        {
+          id: "troubleshooting",
+          title: "Troubleshooting",
+          content: `
                         <h1>Troubleshooting Guide</h1>
 
                         <p>Simple solutions to common problems. Don't worry - most issues are easy to fix!</p>
@@ -2210,7 +2210,7 @@ flutter run</code></pre>
                         </ol>
 
                         <h3>App Name Not Changing</h3>
-                        <p><strong>Problem:</strong> Changed app name but it's still "MartFury"</p>
+                        <p><strong>Problem:</strong> Changed app name but it's still "Soujanya"</p>
                         <p><strong>Solution:</strong></p>
                         <ol>
                             <li>Follow the App Name guide exactly</li>
@@ -2274,15 +2274,15 @@ flutter run</code></pre>
                         </ol>
 
                         <p><strong>Remember:</strong> There's no such thing as a stupid question! Everyone gets stuck sometimes, and most problems have simple solutions.</p>
-                    `
-                },
-                {
-                    id: 'upgrade',
-                    title: 'Upgrade Guide',
-                    content: `
+                    `,
+        },
+        {
+          id: "upgrade",
+          title: "Upgrade Guide",
+          content: `
                         <h1>Upgrading Your App</h1>
 
-                        <p>Simple guide to update your MartFury app to the latest version.</p>
+                        <p>Simple guide to update your Soujanya app to the latest version.</p>
 
                         <h2>🚨 Before You Start</h2>
 
@@ -2290,7 +2290,7 @@ flutter run</code></pre>
                         <p><strong>Save your current app first:</strong></p>
                         <ol>
                             <li>Copy your entire app folder to a safe place</li>
-                            <li>Name it something like "martfury-backup-old-version"</li>
+                            <li>Name it something like "Soujanya-backup-old-version"</li>
                             <li>This way you can go back if something goes wrong</li>
                         </ol>
 
@@ -2375,20 +2375,20 @@ flutter run</code></pre>
                         </ul>
 
                         <p><strong>Remember:</strong> Upgrading is optional! If your current app works well, you might not need to upgrade at all. Only upgrade when you really need new features or bug fixes.</p>
-                    `
-                },
-                {
-                    id: 'releases',
-                    title: 'Release Notes',
-                    content: `
+                    `,
+        },
+        {
+          id: "releases",
+          title: "Release Notes",
+          content: `
                         <h1>Release Notes</h1>
 
                         <p>Check release notes on <a href="https://codecanyon.net/user/botble/portfolio" target="_blank">https://codecanyon.net/user/botble/portfolio</a>.</p>
-                    `
-                }
-            ]
-        }
-    ]
+                    `,
+        },
+      ],
+    },
+  ],
 };
 
 // Export for use in other scripts

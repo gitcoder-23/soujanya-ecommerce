@@ -6,12 +6,12 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class AppConfig {
   static String get apiBaseUrl =>
-      dotenv.env['API_BASE_URL'] ?? 'https://ecommerce-api.botble.com';
-  static String get apiKey => dotenv.env['API_KEY'] ?? '1234567890';
-  static String appName = dotenv.env['APP_NAME'] ?? 'MartFury';
+      dotenv.env['API_BASE_URL'] ?? 'https://soujanya360.com';
+  static String get apiKey => dotenv.env['API_KEY'] ?? '';
+  static String appName = dotenv.env['APP_NAME'] ?? 'Soujanya';
   static String appEnv = dotenv.env['APP_ENV'] ?? 'development';
-  static String testEmail = dotenv.env['TEST_EMAIL'] ?? 'test@example.com';
-  static String testPassword = dotenv.env['TEST_PASSWORD'] ?? 'password123';
+  static String testEmail = dotenv.env['TEST_EMAIL'] ?? '';
+  static String testPassword = dotenv.env['TEST_PASSWORD'] ?? '';
 
   static List<String>? adKeys = dotenv.env['AD_KEYS']?.split(',');
 
@@ -22,40 +22,41 @@ class AppConfig {
       return url;
     }
 
-    String baseUrl = apiBaseUrl.endsWith('/')
-        ? apiBaseUrl.substring(0, apiBaseUrl.length - 1)
-        : apiBaseUrl;
+    String baseUrl =
+        apiBaseUrl.endsWith('/')
+            ? apiBaseUrl.substring(0, apiBaseUrl.length - 1)
+            : apiBaseUrl;
     String path = url.startsWith('/') ? url : '/$url';
 
     return '$baseUrl$path';
   }
 
-  static String get helpCenterUrl => resolveUrl(
-      dotenv.env['HELP_CENTER_URL'] ?? '/contact');
+  static String get helpCenterUrl =>
+      resolveUrl(dotenv.env['HELP_CENTER_URL'] ?? '/contact');
 
-  static String get customerSupportUrl => resolveUrl(
-      dotenv.env['CUSTOMER_SUPPORT_URL'] ?? '/contact');
+  static String get customerSupportUrl =>
+      resolveUrl(dotenv.env['CUSTOMER_SUPPORT_URL'] ?? '/contact');
 
   // Language Configuration
   static String get defaultLanguage =>
       dotenv.env['DEFAULT_LANGUAGE']?.toLowerCase() ?? 'en';
   static String get defaultLanguageDirection =>
       dotenv.env['DEFAULT_LANGUAGE_DIRECTION']?.toLowerCase() ?? 'ltr';
-  
+
   // Theme Configuration
   static String get defaultThemeMode =>
       dotenv.env['DEFAULT_THEME_MODE']?.toLowerCase() ?? 'system';
 
   // RTL language mapping
   static const Map<String, bool> _rtlLanguages = {
-    'ar': true,  // Arabic
-    'he': true,  // Hebrew
-    'fa': true,  // Persian/Farsi
-    'ur': true,  // Urdu
-    'ku': true,  // Kurdish
-    'ps': true,  // Pashto
-    'sd': true,  // Sindhi
-    'yi': true,  // Yiddish
+    'ar': true, // Arabic
+    'he': true, // Hebrew
+    'fa': true, // Persian/Farsi
+    'ur': true, // Urdu
+    'ku': true, // Kurdish
+    'ps': true, // Pashto
+    'sd': true, // Sindhi
+    'yi': true, // Yiddish
   };
 
   // Check if a language code is RTL
@@ -78,7 +79,7 @@ class AppConfig {
   static String? twitterConsumerSecret = dotenv.env['TWITTER_CONSUMER_SECRET'];
   static bool? _twitterEnabledConfig;
   static String twitterRedirectUri =
-      dotenv.env['TWITTER_REDIRECT_URI'] ?? 'martfury://twitter-auth';
+      dotenv.env['TWITTER_REDIRECT_URI'] ?? 'soujanya://twitter-auth';
 
   // Google
   static String? googleClientId;
@@ -166,20 +167,25 @@ class AppConfig {
     await dotenv.load(fileName: '.env');
     await _loadSocialLoginConfig();
     googleClientId ??= _cleanString(dotenv.env['GOOGLE_CLIENT_ID']);
-    googleServerClientId ??= _cleanString(dotenv.env['GOOGLE_SERVER_CLIENT_ID']);
+    googleServerClientId ??= _cleanString(
+      dotenv.env['GOOGLE_SERVER_CLIENT_ID'],
+    );
     facebookAppId ??= _cleanString(dotenv.env['FACEBOOK_APP_ID']);
     facebookClientToken ??= _cleanString(dotenv.env['FACEBOOK_CLIENT_TOKEN']);
     appleServiceId ??= _cleanString(dotenv.env['APPLE_SERVICE_ID']);
     appleTeamId ??= _cleanString(dotenv.env['APPLE_TEAM_ID']);
     twitterConsumerKey ??= _cleanString(dotenv.env['TWITTER_CONSUMER_KEY']);
-    twitterConsumerSecret ??= _cleanString(dotenv.env['TWITTER_CONSUMER_SECRET']);
+    twitterConsumerSecret ??= _cleanString(
+      dotenv.env['TWITTER_CONSUMER_SECRET'],
+    );
   }
 
   static Future<void> _loadSocialLoginConfig() async {
     const path = 'assets/config/social_sign_in.json';
     try {
       final raw = await rootBundle.loadString(path);
-      final Map<String, dynamic> data = json.decode(raw) as Map<String, dynamic>;
+      final Map<String, dynamic> data =
+          json.decode(raw) as Map<String, dynamic>;
       final googleData = _readSection(data, 'google');
       if (googleData != null) {
         _googleEnabledConfig = _cleanBool(googleData['enabled']);
@@ -249,9 +255,7 @@ class AppConfig {
   ) {
     final section = data[key];
     if (section is Map) {
-      return section.map(
-        (dynamic k, dynamic v) => MapEntry(k.toString(), v),
-      );
+      return section.map((dynamic k, dynamic v) => MapEntry(k.toString(), v));
     }
     return null;
   }

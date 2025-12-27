@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-MartFury is a Flutter e-commerce mobile application designed to work with Botble E-commerce backend. It provides a complete e-commerce experience with multi-language support, social authentication, and modern UI.
+Soujanya is a Flutter e-commerce mobile application designed to work with Botble E-commerce backend. It provides a complete e-commerce experience with multi-language support, social authentication, and modern UI.
 
 ## Development Commands
 

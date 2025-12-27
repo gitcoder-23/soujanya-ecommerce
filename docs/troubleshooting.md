@@ -79,7 +79,7 @@ flutter run
 4. Start the app again
 
 ### App Name Not Changing
-**Problem**: Changed app name but it's still "MartFury"
+**Problem**: Changed app name but it's still "Soujanya"
 
 **Solution**:
 1. Follow guide **[04_app_name.md](04_app_name.md)** exactly

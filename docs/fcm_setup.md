@@ -1,6 +1,6 @@
 # Firebase Cloud Messaging (FCM) Setup Guide
 
-This guide will help you set up Firebase Cloud Messaging (FCM) push notifications for your MartFury Flutter app that supports iOS 13.0+ and Android.
+This guide will help you set up Firebase Cloud Messaging (FCM) push notifications for your Soujanya Flutter app that supports iOS 13.0+ and Android.
 
 ## 🚀 Quick Overview
 
@@ -48,7 +48,7 @@ The Android configuration is already complete! The following has been set up:
 
 **You only need to:**
 1. Add your `google-services.json` file to `android/app/`
-2. Update the package name if different from `com.example.martfury`
+2. Update the package name if different from `com.example.Soujanya`
 
 ### iOS Setup
 The iOS configuration is already complete! The following has been set up:

@@ -1,6 +1,6 @@
 # Support & Contact Information
 
-Need help with your MartFury Flutter app? We're here to support you every step of the way!
+Need help with your Soujanya Flutter app? We're here to support you every step of the way!
 
 ## 🆘 Quick Help
 
@@ -13,7 +13,7 @@ Need help with your MartFury Flutter app? We're here to support you every step o
 ## 📞 Contact Options
 
 ### 📖 **Read the Documentation**
-**https://docs.botble.com/martfury-flutter**
+**https://docs.botble.com/Soujanya-flutter**
 - Complete guides and tutorials
 - Step-by-step instructions
 - Updated regularly with new features
@@ -85,7 +85,7 @@ Need help with your MartFury Flutter app? We're here to support you every step o
 
 ### 🌐 **External Resources**
 - **[Flutter Documentation](https://flutter.dev/docs)** - Learn Flutter
-- **[Botble Backend Demo](https://martfury.botble.com)** - See how it works
+- **[Botble Backend Demo](https://Soujanya.botble.com)** - See how it works
 - **[API Documentation](https://ecommerce-api.botble.com/docs)** - Technical details
 
 ## 💡 Tips for Success
@@ -110,7 +110,7 @@ Need help with your MartFury Flutter app? We're here to support you every step o
 
 ## 🌟 Success Stories
 
-Many users have successfully launched their mobile apps using MartFury Flutter. Here are some tips from successful users:
+Many users have successfully launched their mobile apps using Soujanya Flutter. Here are some tips from successful users:
 
 ### "Start Simple"
 - Get the basic app working first

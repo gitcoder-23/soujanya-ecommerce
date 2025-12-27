@@ -1,8 +1,8 @@
-# MartFury - Flutter E-commerce App for Botble
+# Soujanya - Flutter E-commerce App for Botble
 
-MartFury is a feature-rich Flutter mobile application designed to work with Botble E-commerce backend. This app provides a complete e-commerce experience with a modern UI and seamless integration with Botble's API. It serves as the mobile client for the [MartFury Multipurpose Laravel Ecommerce System](https://codecanyon.net/item/martfury-multipurpose-laravel-ecommerce-system/29925223).
+Soujanya is a feature-rich Flutter mobile application designed to work with Botble E-commerce backend. This app provides a complete e-commerce experience with a modern UI and seamless integration with Botble's API. It serves as the mobile client for the [Soujanya Multipurpose Laravel Ecommerce System](https://codecanyon.net/item/Soujanya-multipurpose-laravel-ecommerce-system/29925223).
 
-![MartFury Flutter App](./art/1.png)
+![Soujanya Flutter App](./art/1.png)
 
 ## Features
 
@@ -30,8 +30,8 @@ MartFury is a feature-rich Flutter mobile application designed to work with Botb
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/martfury-flutter.git
-cd martfury-flutter
+git clone https://github.com/yourusername/Soujanya-flutter.git
+cd Soujanya-flutter
 ```
 
 ### 2. Install dependencies
@@ -47,7 +47,7 @@ Create a `.env` file in the root directory based on the `.env.example` template:
 ```
 # API Configuration
 API_BASE_URL=https://your-botble-ecommerce-api.com
-APP_NAME=MartFury
+APP_NAME=Soujanya
 APP_ENV=development
 TEST_EMAIL=your-test-email@example.com
 TEST_PASSWORD=your-test-password
@@ -77,7 +77,7 @@ lib/
 
 ## Integration with Botble E-commerce
 
-This app is designed to work with [Botble's MartFury Multipurpose Laravel Ecommerce System](https://codecanyon.net/item/martfury-multipurpose-laravel-ecommerce-system/29925223), a comprehensive e-commerce solution available on CodeCanyon. The mobile app connects to the Botble API endpoints to fetch and manage data.
+This app is designed to work with [Botble's Soujanya Multipurpose Laravel Ecommerce System](https://codecanyon.net/item/Soujanya-multipurpose-laravel-ecommerce-system/29925223), a comprehensive e-commerce solution available on CodeCanyon. The mobile app connects to the Botble API endpoints to fetch and manage data.
 
 ### API Documentation
 
@@ -96,7 +96,7 @@ The app integrates with the Botble E-commerce API, which is documented at [https
 
 ### Backend Requirements
 
-To use this mobile app, you need to have a running instance of the MartFury Laravel E-commerce system. The backend provides:
+To use this mobile app, you need to have a running instance of the Soujanya Laravel E-commerce system. The backend provides:
 
 - RESTful API for mobile integration
 - Multi-vendor marketplace capabilities
@@ -232,9 +232,9 @@ If you encounter any bugs or issues, please report them by:
 2. Providing detailed steps to reproduce the problem
 3. Including information about your device and app version
 
-## About MartFury Laravel E-commerce System
+## About Soujanya Laravel E-commerce System
 
-The backend system that powers this Flutter app is the [MartFury Multipurpose Laravel Ecommerce System](https://codecanyon.net/item/martfury-multipurpose-laravel-ecommerce-system/29925223), which offers:
+The backend system that powers this Flutter app is the [Soujanya Multipurpose Laravel Ecommerce System](https://codecanyon.net/item/Soujanya-multipurpose-laravel-ecommerce-system/29925223), which offers:
 
 - **Multivendor & Marketplace**: Easy to enable/disable multivendor features
 - **Full E-commerce Features**: Product catalog, attributes, variations, collections, discounts, shipping
@@ -247,7 +247,7 @@ The backend system that powers this Flutter app is the [MartFury Multipurpose La
 - **Powerful Permission System**: Manage users, teams, roles by permissions
 - **Beautiful Theme**: Ready to use with color schemes to match your taste
 
-For more information about the backend system, visit the [MartFury Laravel E-commerce System page on CodeCanyon](https://codecanyon.net/item/martfury-multipurpose-laravel-ecommerce-system/29925223).
+For more information about the backend system, visit the [Soujanya Laravel E-commerce System page on CodeCanyon](https://codecanyon.net/item/Soujanya-multipurpose-laravel-ecommerce-system/29925223).
 
 ## Credits
 

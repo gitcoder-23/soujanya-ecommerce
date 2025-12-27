@@ -1,6 +1,6 @@
 # Installation Guide
 
-Simple steps to get your MartFury app running on your computer.
+Simple steps to get your Soujanya app running on your computer.
 
 ## 🚀 Quick Start
 
@@ -16,7 +16,7 @@ Simple steps to get your MartFury app running on your computer.
 4. This will take about 15-20 minutes
 
 ### Step 2: Get the App Code
-1. Download your MartFury app files
+1. Download your Soujanya app files
 2. Extract them to a folder on your computer
 3. Remember where you put this folder!
 
@@ -24,7 +24,7 @@ Simple steps to get your MartFury app running on your computer.
 1. Open Terminal (Mac/Linux) or Command Prompt (Windows)
 2. Navigate to your app folder:
    ```bash
-   cd path/to/your/martfury-app
+   cd path/to/your/Soujanya-app
    ```
 3. Install dependencies:
    ```bash
