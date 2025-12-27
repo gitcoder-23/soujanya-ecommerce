@@ -1,36 +1,26 @@
 {
   "project_info": {
-    "project_number": "YOUR_PROJECT_NUMBER",
-    "project_id": "martfury-d6732",
-    "storage_bucket": "martfury-d6732.appspot.com"
+    "project_number": "828442136668",
+    "project_id": "soujanya-d9d4d",
+    "storage_bucket": "soujanya-d9d4d.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:YOUR_PROJECT_NUMBER:android:YOUR_APP_ID",
+        "mobilesdk_app_id": "1:828442136668:android:a52fd37a4b5e19611a5699",
         "android_client_info": {
-          "package_name": "com.example.martfury"
+          "package_name": "com.app.soujanya"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "YOUR_CLIENT_ID.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "YOUR_API_KEY"
+          "current_key": "AIzaSyDFbTDMS_uYpq_I4Sro7JjQloomcZWQ9l8"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "YOUR_CLIENT_ID.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

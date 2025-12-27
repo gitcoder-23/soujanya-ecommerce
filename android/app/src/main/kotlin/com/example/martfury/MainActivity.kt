@@ -1,4 +1,4 @@
-package com.example.martfury
+package com.app.soujanya
 
 import io.flutter.embedding.android.FlutterActivity
 
