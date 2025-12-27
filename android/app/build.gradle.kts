@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.martfury"
+    namespace = "com.app.soujanya"
     compileSdk = 36
     ndkVersion = "27.0.12077973"
 
@@ -21,7 +21,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.martfury"
+        applicationId = "com.app.soujanya"
         minSdk = flutter.minSdkVersion
         targetSdk = 36
         versionCode = 1
