@@ -28,7 +28,8 @@ class RobustWebView extends StatefulWidget {
   State<RobustWebView> createState() => _RobustWebViewState();
 }
 
-class _RobustWebViewState extends State<RobustWebView> with AutomaticKeepAliveClientMixin, WidgetsBindingObserver {
+class _RobustWebViewState extends State<RobustWebView>
+    with AutomaticKeepAliveClientMixin, WidgetsBindingObserver {
   WebViewController? _controller;
   bool _isLoading = true;
   bool _hasError = false;
@@ -39,7 +40,7 @@ class _RobustWebViewState extends State<RobustWebView> with AutomaticKeepAliveCl
   bool _isDisposed = false;
   bool _pageLoadedSuccessfully = false;
   int _criticalErrorCount = 0;
-  
+
   @override
   bool get wantKeepAlive => true;
 
@@ -60,17 +61,19 @@ class _RobustWebViewState extends State<RobustWebView> with AutomaticKeepAliveCl
     _isDisposed = true;
     _timeoutTimer?.cancel();
     WidgetsBinding.instance.removeObserver(this);
-    
+
     _controller = null;
-    
+
     super.dispose();
   }
-  
+
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.paused) {
       // Pause any media when app goes to background
-      _controller?.runJavaScript('if(window.pauseAllMedia) window.pauseAllMedia();');
+      _controller?.runJavaScript(
+        'if(window.pauseAllMedia) window.pauseAllMedia();',
+      );
     }
   }
 
@@ -93,7 +96,8 @@ class _RobustWebViewState extends State<RobustWebView> with AutomaticKeepAliveCl
   }
 
   void _loadWebView() {
-    const userAgent = 'Mozilla/5.0 (Linux; Android 10; Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.120 Mobile Safari/537.36 MartFury-App/1.0';
+    const userAgent =
+        'Mozilla/5.0 (Linux; Android 10; Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.120 Mobile Safari/537.36 Soujanya-App/1.0';
 
     _controller = WebViewTimeoutHandler.createTimeoutResistantController(
       userAgent: userAgent,
@@ -123,40 +127,47 @@ class _RobustWebViewState extends State<RobustWebView> with AutomaticKeepAliveCl
             _isLoading = false;
           });
         }
-        
+
         // Inject error suppression for non-critical resources
         _injectErrorHandling();
 
         widget.onPageFinished?.call(url);
       },
       onWebResourceError: (WebResourceError error) {
-        developer.log('WebView error: ${error.errorCode} - ${error.description}', name: 'RobustWebView');
-        
+        developer.log(
+          'WebView error: ${error.errorCode} - ${error.description}',
+          name: 'RobustWebView',
+        );
+
         // Ignore non-critical errors after page loads successfully
         if (_pageLoadedSuccessfully) {
           // DNS, connection refused, timeout errors for secondary resources
           if (error.errorCode == -2 || // ERR_NAME_NOT_RESOLVED
-              error.errorCode == -6 || // ERR_CONNECTION_REFUSED  
+              error.errorCode == -6 || // ERR_CONNECTION_REFUSED
               error.errorCode == -7 || // ERR_CONNECTION_TIMED_OUT
-              error.errorCode == -1001) { // iOS timeout
-            developer.log('Ignoring non-critical resource error', name: 'RobustWebView');
+              error.errorCode == -1001) {
+            // iOS timeout
+            developer.log(
+              'Ignoring non-critical resource error',
+              name: 'RobustWebView',
+            );
             return;
           }
         }
-        
+
         _cancelTimeoutTimer();
         _errorCount++;
-        
+
         // Only show error if it's critical or repeated
         if (!_pageLoadedSuccessfully || error.isForMainFrame == true) {
           _criticalErrorCount++;
-          
+
           // Handle timeout errors with recovery
           if (error.errorCode == -1001 && _errorCount <= 2) {
             _handleTimeoutRecovery();
             return;
           }
-          
+
           if (_criticalErrorCount > 3) {
             if (mounted) {
               setState(() {
@@ -184,10 +195,10 @@ class _RobustWebViewState extends State<RobustWebView> with AutomaticKeepAliveCl
       },
       onNavigationRequest: (NavigationRequest request) {
         return widget.onNavigationRequest?.call(request) ??
-               NavigationDecision.navigate;
+            NavigationDecision.navigate;
       },
     );
-    
+
     // Load URL with enhanced timeout handling
     WebViewTimeoutHandler.loadUrlWithTimeoutHandling(
       _controller!,
@@ -207,7 +218,8 @@ class _RobustWebViewState extends State<RobustWebView> with AutomaticKeepAliveCl
         setState(() {
           _isLoading = false;
           _hasError = true;
-          _errorMessage = 'Page loading timed out. Please check your connection and try again.';
+          _errorMessage =
+              'Page loading timed out. Please check your connection and try again.';
         });
       }
     });
@@ -236,7 +248,8 @@ class _RobustWebViewState extends State<RobustWebView> with AutomaticKeepAliveCl
 
   void _injectErrorHandling() {
     if (_controller != null && !_isDisposed) {
-      _controller!.runJavaScript('''
+      _controller!
+          .runJavaScript('''
         // Suppress errors for non-critical resources
         window.addEventListener('error', function(e) {
           if (e.target && (e.target.tagName === 'IMG' || 
@@ -252,26 +265,30 @@ class _RobustWebViewState extends State<RobustWebView> with AutomaticKeepAliveCl
         for (var i = 0; i < iframes.length; i++) {
           iframes[i].onerror = function() { return true; };
         }
-      ''').catchError((e) {
-        developer.log('Error injecting error handling: $e', name: 'RobustWebView');
-      });
+      ''')
+          .catchError((e) {
+            developer.log(
+              'Error injecting error handling: $e',
+              name: 'RobustWebView',
+            );
+          });
     }
   }
-  
+
   String _getReadableErrorMessage(WebResourceError error) {
     // Handle DNS and network error codes
     if (error.errorCode == -2) {
       return 'Cannot resolve server address. Please check your internet connection.';
     }
-    
+
     if (error.errorCode == -6) {
       return 'Connection refused by server. Please try again later.';
     }
-    
+
     if (error.errorCode == -7) {
       return 'Connection timed out. Please check your network.';
     }
-    
+
     // Handle WebKit-specific error codes
     if (error.errorCode == -1001) {
       return 'Request timed out. The server is taking too long to respond. Please try again.';
@@ -373,11 +390,7 @@ class _RobustWebViewState extends State<RobustWebView> with AutomaticKeepAliveCl
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                Icons.error_outline,
-                size: 64,
-                color: Colors.red[300],
-              ),
+              Icon(Icons.error_outline, size: 64, color: Colors.red[300]),
               const SizedBox(height: 16),
               Text(
                 'Connection Error',
@@ -392,10 +405,7 @@ class _RobustWebViewState extends State<RobustWebView> with AutomaticKeepAliveCl
               if (_errorMessage != null)
                 Text(
                   _errorMessage!,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey[600],
-                  ),
+                  style: TextStyle(fontSize: 14, color: Colors.grey[600]),
                   textAlign: TextAlign.center,
                 ),
               const SizedBox(height: 24),
@@ -426,10 +436,7 @@ class _RobustWebViewState extends State<RobustWebView> with AutomaticKeepAliveCl
     return Stack(
       children: [
         WebViewWidget(controller: _controller!),
-        if (_isLoading)
-          const Center(
-            child: CircularProgressIndicator(),
-          ),
+        if (_isLoading) const Center(child: CircularProgressIndicator()),
       ],
     );
   }

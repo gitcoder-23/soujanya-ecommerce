@@ -46,72 +46,70 @@ class _WebViewDebugScreenState extends State<WebViewDebugScreen> {
     _addDebugLog('Target URL: ${widget.url}');
     _addDebugLog('Headers: ${widget.headers?.keys.join(', ') ?? 'none'}');
 
-    _controller = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setBackgroundColor(Colors.white)
-      ..setUserAgent(
-        'Mozilla/5.0 (Linux; Android 10; Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.120 Mobile Safari/537.36 MartFury-Debug/1.0',
-      )
-      ..setNavigationDelegate(
-        NavigationDelegate(
-          onPageStarted: (String url) {
-            _addDebugLog('Page started loading: $url');
-            setState(() {
-              _isLoading = true;
-              _hasError = false;
-              _errorMessage = null;
-              _currentUrl = url;
-            });
-          },
-          onPageFinished: (String url) {
-            _addDebugLog('Page finished loading: $url');
-            setState(() {
-              _isLoading = false;
-              _currentUrl = url;
-            });
-            
-            // Inject JavaScript to get page info
-            _controller?.runJavaScript('''
+    _controller =
+        WebViewController()
+          ..setJavaScriptMode(JavaScriptMode.unrestricted)
+          ..setBackgroundColor(Colors.white)
+          ..setUserAgent(
+            'Mozilla/5.0 (Linux; Android 10; Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.120 Mobile Safari/537.36 Soujanya-Debug/1.0',
+          )
+          ..setNavigationDelegate(
+            NavigationDelegate(
+              onPageStarted: (String url) {
+                _addDebugLog('Page started loading: $url');
+                setState(() {
+                  _isLoading = true;
+                  _hasError = false;
+                  _errorMessage = null;
+                  _currentUrl = url;
+                });
+              },
+              onPageFinished: (String url) {
+                _addDebugLog('Page finished loading: $url');
+                setState(() {
+                  _isLoading = false;
+                  _currentUrl = url;
+                });
+
+                // Inject JavaScript to get page info
+                _controller?.runJavaScript('''
               console.log('Page title: ' + document.title);
               console.log('Page URL: ' + window.location.href);
               console.log('Document ready state: ' + document.readyState);
               console.log('Body content length: ' + document.body.innerHTML.length);
             ''');
-          },
-          onWebResourceError: (WebResourceError error) {
-            _addDebugLog('Resource error: ${error.description}');
-            _addDebugLog('Error type: ${error.errorType}');
-            _addDebugLog('Error code: ${error.errorCode}');
-            setState(() {
-              _isLoading = false;
-              _hasError = true;
-              _errorMessage = error.description;
-            });
-          },
-          onHttpError: (HttpResponseError error) {
-            _addDebugLog('HTTP error: ${error.response?.statusCode}');
-            setState(() {
-              _isLoading = false;
-              _hasError = true;
-              _errorMessage = 'HTTP Error: ${error.response?.statusCode}';
-            });
-          },
-          onNavigationRequest: (NavigationRequest request) {
-            _addDebugLog('Navigation request: ${request.url}');
-            return NavigationDecision.navigate;
-          },
-        ),
-      )
-      ..addJavaScriptChannel(
-        'DebugChannel',
-        onMessageReceived: (JavaScriptMessage message) {
-          _addDebugLog('JS Message: ${message.message}');
-        },
-      )
-      ..loadRequest(
-        Uri.parse(widget.url),
-        headers: widget.headers ?? {},
-      );
+              },
+              onWebResourceError: (WebResourceError error) {
+                _addDebugLog('Resource error: ${error.description}');
+                _addDebugLog('Error type: ${error.errorType}');
+                _addDebugLog('Error code: ${error.errorCode}');
+                setState(() {
+                  _isLoading = false;
+                  _hasError = true;
+                  _errorMessage = error.description;
+                });
+              },
+              onHttpError: (HttpResponseError error) {
+                _addDebugLog('HTTP error: ${error.response?.statusCode}');
+                setState(() {
+                  _isLoading = false;
+                  _hasError = true;
+                  _errorMessage = 'HTTP Error: ${error.response?.statusCode}';
+                });
+              },
+              onNavigationRequest: (NavigationRequest request) {
+                _addDebugLog('Navigation request: ${request.url}');
+                return NavigationDecision.navigate;
+              },
+            ),
+          )
+          ..addJavaScriptChannel(
+            'DebugChannel',
+            onMessageReceived: (JavaScriptMessage message) {
+              _addDebugLog('JS Message: ${message.message}');
+            },
+          )
+          ..loadRequest(Uri.parse(widget.url), headers: widget.headers ?? {});
 
     setState(() {});
   }
@@ -156,18 +154,12 @@ class _WebViewDebugScreenState extends State<WebViewDebugScreen> {
         title: Text(widget.title),
         backgroundColor: AppColors.primary,
         actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: _reload,
-          ),
+          IconButton(icon: const Icon(Icons.refresh), onPressed: _reload),
           IconButton(
             icon: const Icon(Icons.clear_all),
             onPressed: _clearCacheAndReload,
           ),
-          IconButton(
-            icon: const Icon(Icons.clear),
-            onPressed: _clearLogs,
-          ),
+          IconButton(icon: const Icon(Icons.clear), onPressed: _clearLogs),
         ],
       ),
       body: Column(
@@ -181,7 +173,11 @@ class _WebViewDebugScreenState extends State<WebViewDebugScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Status: ${_hasError ? 'ERROR' : _isLoading ? 'LOADING' : 'LOADED'}',
+                  'Status: ${_hasError
+                      ? 'ERROR'
+                      : _isLoading
+                      ? 'LOADING'
+                      : 'LOADED'}',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: _hasError ? Colors.red[800] : Colors.green[800],
@@ -195,15 +191,12 @@ class _WebViewDebugScreenState extends State<WebViewDebugScreen> {
                 if (_errorMessage != null)
                   Text(
                     'Error: $_errorMessage',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.red[800],
-                    ),
+                    style: TextStyle(fontSize: 12, color: Colors.red[800]),
                   ),
               ],
             ),
           ),
-          
+
           // WebView
           Expanded(
             flex: 2,
@@ -249,21 +242,17 @@ class _WebViewDebugScreenState extends State<WebViewDebugScreen> {
                     ),
                   )
                 else
-                  const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                
+                  const Center(child: CircularProgressIndicator()),
+
                 if (_isLoading)
                   Container(
                     color: Colors.white.withValues(alpha: 0.8),
-                    child: const Center(
-                      child: CircularProgressIndicator(),
-                    ),
+                    child: const Center(child: CircularProgressIndicator()),
                   ),
               ],
             ),
           ),
-          
+
           // Debug logs
           Expanded(
             flex: 1,
