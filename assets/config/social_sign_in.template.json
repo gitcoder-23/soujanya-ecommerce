@@ -1,0 +1,22 @@
+{
+  "google": {
+    "enabled": true,
+    "clientId": "",
+    "serverClientId": ""
+  },
+  "facebook": {
+    "enabled": false,
+    "appId": "",
+    "clientToken": ""
+  },
+  "apple": {
+    "enabled": false,
+    "serviceId": "",
+    "teamId": ""
+  },
+  "twitter": {
+    "enabled": false,
+    "consumerKey": "",
+    "consumerSecret": ""
+  }
+}
