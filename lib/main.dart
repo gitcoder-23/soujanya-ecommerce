@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:martfury/core/app_config.dart';
+import 'package:martfury/firebase_options.dart';
 import 'package:martfury/src/view/screen/splash_screen.dart';
 import 'package:martfury/src/utils/restart_widget.dart';
 import 'package:martfury/src/theme/app_theme.dart';
@@ -26,7 +27,9 @@ void main() async {
   // Initialize Firebase with error handling
   bool firebaseInitialized = false;
   try {
-    await Firebase.initializeApp();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
     firebaseInitialized = true;
   } catch (e) {
     // Firebase initialization failed - app will continue without push notifications
@@ -36,7 +39,7 @@ void main() async {
   // Initialize app configuration
   await AppConfig.load();
   await EasyLocalization.ensureInitialized();
-  
+
   // Check if API URL has changed and clear cart, wishlist, and compare data if needed
   await Future.wait([
     CartService.checkAndClearCartOnApiChange(),
@@ -62,7 +65,7 @@ void main() async {
   // Get the default language from environment
   final defaultLanguageCode = AppConfig.defaultLanguage;
   final defaultLocale = Locale(defaultLanguageCode);
-  
+
   // Initialize theme controller
   Get.put(ThemeController());
 
@@ -115,21 +118,23 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     final themeController = Get.find<ThemeController>();
-    
+
     return Directionality(
       textDirection: _textDirection,
-      child: Obx(() => GetMaterialApp(
-        title: AppConfig.appName,
-        theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.darkTheme,
-        themeMode: themeController.themeMode,
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
-        home: const SplashScreen(),
-        debugShowCheckedModeBanner: false,
-        navigatorObservers: [AnalyticsService.observer],
-      )),
+      child: Obx(
+        () => GetMaterialApp(
+          title: AppConfig.appName,
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: themeController.themeMode,
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+          home: const SplashScreen(),
+          debugShowCheckedModeBanner: false,
+          navigatorObservers: [AnalyticsService.observer],
+        ),
+      ),
     );
   }
 }

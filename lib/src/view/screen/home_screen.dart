@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'dart:ui' as ui;
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:easy_localization/easy_localization.dart';
@@ -39,8 +41,35 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
+    getFcmDeviceToken();
     super.initState();
     _scrollController.addListener(_onScroll);
+  }
+
+  void getFcmDeviceToken() {
+    FirebaseMessaging.instance.requestPermission().then((settings) {
+      if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+        FirebaseMessaging.instance.getAPNSToken().then((value) {
+          print('APNS Token: $value');
+        });
+        if (Platform.isIOS) {
+          FirebaseMessaging.instance.getAPNSToken().then((apnToken) {
+            print('APNS Token: $apnToken');
+            if (apnToken != null) {
+              FirebaseMessaging.instance.getToken().then((value) {
+                print('pushToken=ios=> $value');
+              });
+            } else {
+              print('APNS Token is not set. Likely running on a simulator.');
+            }
+          });
+        } else {
+          FirebaseMessaging.instance.getToken().then((value) {
+            print('pushToken=android=> $value');
+          });
+        }
+      }
+    });
   }
 
   @override
@@ -105,7 +134,8 @@ class _HomeScreenState extends State<HomeScreen> {
     // Check if the path is /products or just "products"
     final normalizedPath = path.startsWith('/') ? path : '/$path';
 
-    if (normalizedPath == '/products' || normalizedPath.startsWith('/products?')) {
+    if (normalizedPath == '/products' ||
+        normalizedPath.startsWith('/products?')) {
       // Navigate to MainScreen with Explore tab (index 2) to keep bottom navigation
       Navigator.pushReplacement(
         context,
@@ -118,10 +148,9 @@ class _HomeScreenState extends State<HomeScreen> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => WebViewScreen(
-            url: AppConfig.resolveUrl(link),
-            title: title,
-          ),
+          builder:
+              (context) =>
+                  WebViewScreen(url: AppConfig.resolveUrl(link), title: title),
         ),
       );
     }
@@ -740,29 +769,51 @@ class _HomeScreenState extends State<HomeScreen> {
                       return Expanded(
                         child: Padding(
                           padding: EdgeInsets.only(
-                            right: isRtl
-                                ? (index == 1 ? 8.0 : 0.0)
-                                : (index == 0 ? 8.0 : 0.0),
-                            left: isRtl
-                                ? (index == 0 ? 8.0 : 0.0)
-                                : (index == 1 ? 8.0 : 0.0),
+                            right:
+                                isRtl
+                                    ? (index == 1 ? 8.0 : 0.0)
+                                    : (index == 0 ? 8.0 : 0.0),
+                            left:
+                                isRtl
+                                    ? (index == 0 ? 8.0 : 0.0)
+                                    : (index == 1 ? 8.0 : 0.0),
                           ),
                           child: ProductCard(
-                            imageUrl: product['image_with_sizes']?['origin']?[0] ?? '',
+                            imageUrl:
+                                product['image_with_sizes']?['origin']?[0] ??
+                                '',
                             title: product['name'] ?? '',
                             price: _parsePrice(product['price']),
-                            originalPrice: _parsePrice(product['original_price']),
-                            priceFormatted: product['price_formatted'] ?? '\$${_parsePrice(product['price']).toStringAsFixed(2)}',
-                            originalPriceFormatted: product['original_price_formatted'] ?? '\$${_parsePrice(product['original_price']).toStringAsFixed(2)}',
+                            originalPrice: _parsePrice(
+                              product['original_price'],
+                            ),
+                            priceFormatted:
+                                product['price_formatted'] ??
+                                '\$${_parsePrice(product['price']).toStringAsFixed(2)}',
+                            originalPriceFormatted:
+                                product['original_price_formatted'] ??
+                                '\$${_parsePrice(product['original_price']).toStringAsFixed(2)}',
                             rating: _parsePrice(product['reviews_avg']),
                             reviewsCount: product['reviews_count'] as int? ?? 0,
                             seller: product['store']?['name'] as String?,
                             layout: ProductCardLayout.grid,
                             onTap: () => _navigateToProduct(context, product),
                             showProgressBar: true,
-                            soldCount: int.tryParse(product['sold']?.toString() ?? '0') ?? 0,
-                            totalCount: (int.tryParse(product['sold']?.toString() ?? '0') ?? 0) +
-                                       (int.tryParse(product['sale_count_left']?.toString() ?? '1') ?? 1),
+                            soldCount:
+                                int.tryParse(
+                                  product['sold']?.toString() ?? '0',
+                                ) ??
+                                0,
+                            totalCount:
+                                (int.tryParse(
+                                      product['sold']?.toString() ?? '0',
+                                    ) ??
+                                    0) +
+                                (int.tryParse(
+                                      product['sale_count_left']?.toString() ??
+                                          '1',
+                                    ) ??
+                                    1),
                           ),
                         ),
                       );
@@ -875,7 +926,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       onTap: () {
                         if (ads[i + 1].link != null &&
                             ads[i + 1].link!.isNotEmpty) {
-                          _handleAdLinkTap(context, ads[i + 1].link!, ads[i + 1].name);
+                          _handleAdLinkTap(
+                            context,
+                            ads[i + 1].link!,
+                            ads[i + 1].name,
+                          );
                         }
                       },
                       child: Container(
@@ -1555,16 +1610,21 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             const SizedBox(height: 24),
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                              ),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     'profile.blog'.tr(),
                                     style: kAppTextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
-                                      color: AppColors.getPrimaryTextColor(context),
+                                      color: AppColors.getPrimaryTextColor(
+                                        context,
+                                      ),
                                     ),
                                   ),
                                   if (!controller.blogLoading.value &&
@@ -1595,7 +1655,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 height: 280,
                                 child: ListView.builder(
                                   scrollDirection: Axis.horizontal,
-                                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 16,
+                                  ),
                                   itemCount: 3,
                                   itemBuilder: (context, index) {
                                     return Container(
@@ -1604,7 +1666,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         right: index < 2 ? 16 : 0,
                                       ),
                                       decoration: BoxDecoration(
-                                        color: AppColors.getSkeletonColor(context),
+                                        color: AppColors.getSkeletonColor(
+                                          context,
+                                        ),
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                     );
@@ -1614,11 +1678,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             else if (controller.blogError.value != null)
                               // Error state with retry
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 16),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
                                 child: Container(
                                   padding: const EdgeInsets.all(24),
                                   decoration: BoxDecoration(
-                                    color: AppColors.getCardBackgroundColor(context),
+                                    color: AppColors.getCardBackgroundColor(
+                                      context,
+                                    ),
                                     borderRadius: BorderRadius.circular(12),
                                     border: Border.all(
                                       color: AppColors.getBorderColor(context),
@@ -1630,7 +1698,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       Icon(
                                         Icons.error_outline,
                                         size: 48,
-                                        color: AppColors.getHintTextColor(context),
+                                        color: AppColors.getHintTextColor(
+                                          context,
+                                        ),
                                       ),
                                       const SizedBox(height: 12),
                                       Text(
@@ -1638,7 +1708,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         style: kAppTextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w600,
-                                          color: AppColors.getPrimaryTextColor(context),
+                                          color: AppColors.getPrimaryTextColor(
+                                            context,
+                                          ),
                                         ),
                                         textAlign: TextAlign.center,
                                       ),
@@ -1647,14 +1719,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                         'blog.failed_to_load'.tr(),
                                         style: kAppTextStyle(
                                           fontSize: 14,
-                                          color: AppColors.getHintTextColor(context),
+                                          color: AppColors.getHintTextColor(
+                                            context,
+                                          ),
                                         ),
                                         textAlign: TextAlign.center,
                                       ),
                                       const SizedBox(height: 16),
                                       ElevatedButton.icon(
-                                        onPressed: () => controller.loadLatestBlogPosts(),
-                                        icon: const Icon(Icons.refresh, size: 18),
+                                        onPressed:
+                                            () =>
+                                                controller
+                                                    .loadLatestBlogPosts(),
+                                        icon: const Icon(
+                                          Icons.refresh,
+                                          size: 18,
+                                        ),
                                         label: Text('common.try_again'.tr()),
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: AppColors.primary,
