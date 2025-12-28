@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:martfury/src/theme/app_fonts.dart';
 import 'package:martfury/src/theme/app_colors.dart';
+import 'package:martfury/src/utils/app_internet_connection_wrapper.dart';
 import 'package:martfury/src/view/screen/product_detail_screen.dart';
 import 'dart:async';
 import 'package:martfury/src/service/wishlist_service.dart';
@@ -265,9 +266,9 @@ class WishlistScreenState extends State<WishlistScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ProductDetailScreen(
-                    product: {'slug': item['slug']},
-                  ),
+                  builder:
+                      (context) =>
+                          ProductDetailScreen(product: {'slug': item['slug']}),
                 ),
               );
             },
@@ -282,9 +283,7 @@ class WishlistScreenState extends State<WishlistScreen> {
                 child: OutlinedButton(
                   onPressed: () => _removeFromWishlist(item['id'].toString()),
                   style: OutlinedButton.styleFrom(
-                    side: BorderSide(
-                      color: AppColors.getBorderColor(context),
-                    ),
+                    side: BorderSide(color: AppColors.getBorderColor(context)),
                     backgroundColor: AppColors.getSurfaceColor(context),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -326,76 +325,80 @@ class WishlistScreenState extends State<WishlistScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.getBackgroundColor(context),
-      appBar: AppBar(
-        backgroundColor: AppColors.primary,
-        title: Text(
-          'wishlist.wishlist'.tr(),
-          style: kAppTextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: AppColors.appBarForeground,
+    return AppInternetConnectionWrapper(
+      child: Scaffold(
+        backgroundColor: AppColors.getBackgroundColor(context),
+        appBar: AppBar(
+          backgroundColor: AppColors.primary,
+          title: Text(
+            'wishlist.wishlist'.tr(),
+            style: kAppTextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: AppColors.appBarForeground,
+            ),
           ),
-        ),
-        actions: [
-          if (_wishlistItems.isNotEmpty)
-            Padding(
-              padding: const EdgeInsets.only(right: 16),
-              child: Center(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 4,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.black.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                    '${_wishlistItems.length} ${'common.items'.tr()}',
-                    style: kAppTextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black,
+          actions: [
+            if (_wishlistItems.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(right: 16),
+                child: Center(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.black.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(
+                      '${_wishlistItems.length} ${'common.items'.tr()}',
+                      style: kAppTextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-        ],
-      ),
-      body: _isLoading
-          ? _buildLoadingState()
-          : RefreshIndicator(
-              onRefresh: loadWishlist,
-              child: _wishlistItems.isEmpty
-                  ? LayoutBuilder(
-                      builder: (context, constraints) {
-                        return SingleChildScrollView(
-                          physics: const AlwaysScrollableScrollPhysics(),
-                          child: SizedBox(
-                            height: constraints.maxHeight,
-                            child: _buildEmptyState(),
+          ],
+        ),
+        body:
+            _isLoading
+                ? _buildLoadingState()
+                : RefreshIndicator(
+                  onRefresh: loadWishlist,
+                  child:
+                      _wishlistItems.isEmpty
+                          ? LayoutBuilder(
+                            builder: (context, constraints) {
+                              return SingleChildScrollView(
+                                physics: const AlwaysScrollableScrollPhysics(),
+                                child: SizedBox(
+                                  height: constraints.maxHeight,
+                                  child: _buildEmptyState(),
+                                ),
+                              );
+                            },
+                          )
+                          : GridView.builder(
+                            padding: const EdgeInsets.all(20),
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  childAspectRatio: 0.48,
+                                  crossAxisSpacing: 16,
+                                  mainAxisSpacing: 16,
+                                ),
+                            itemCount: _wishlistItems.length,
+                            itemBuilder: (context, index) {
+                              return _buildWishlistItem(_wishlistItems[index]);
+                            },
                           ),
-                        );
-                      },
-                    )
-                  : GridView.builder(
-                      padding: const EdgeInsets.all(20),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 0.48,
-                        crossAxisSpacing: 16,
-                        mainAxisSpacing: 16,
-                      ),
-                      itemCount: _wishlistItems.length,
-                      itemBuilder: (context, index) {
-                        return _buildWishlistItem(_wishlistItems[index]);
-                      },
-                    ),
-            ),
+                ),
+      ),
     );
   }
 }

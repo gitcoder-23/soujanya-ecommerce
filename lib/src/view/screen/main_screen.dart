@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:martfury/src/utils/app_internet_connection_wrapper.dart';
 import 'package:martfury/src/view/widget/bottom_nav_bar.dart';
 import 'home_screen.dart';
 import 'category_screen.dart';
@@ -11,11 +12,7 @@ import 'product_screen.dart';
 class MainScreen extends StatefulWidget {
   final int initialIndex;
   final Widget? productScreen;
-  const MainScreen({
-    super.key, 
-    this.initialIndex = 0,
-    this.productScreen,
-  });
+  const MainScreen({super.key, this.initialIndex = 0, this.productScreen});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -92,15 +89,17 @@ class _MainScreenState extends State<MainScreen> {
           await _onWillPop();
         }
       },
-      child: Scaffold(
-        body: IndexedStack(index: _currentIndex, children: _screens),
-        bottomNavigationBar: BottomNavBar(
-          currentIndex: _currentIndex,
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
+      child: AppInternetConnectionWrapper(
+        child: Scaffold(
+          body: IndexedStack(index: _currentIndex, children: _screens),
+          bottomNavigationBar: BottomNavBar(
+            currentIndex: _currentIndex,
+            onTap: (index) {
+              setState(() {
+                _currentIndex = index;
+              });
+            },
+          ),
         ),
       ),
     );

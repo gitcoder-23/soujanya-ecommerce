@@ -4,6 +4,7 @@ import 'package:martfury/src/model/help_item.dart';
 import 'package:martfury/src/service/help_service.dart';
 import 'package:martfury/src/theme/app_fonts.dart';
 import 'package:martfury/src/theme/app_colors.dart';
+import 'package:martfury/src/utils/app_internet_connection_wrapper.dart';
 import 'package:martfury/src/view/screen/webview_screen.dart';
 import 'package:martfury/core/app_config.dart';
 
@@ -126,36 +127,38 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
       );
     }
 
-    return Scaffold(
-      backgroundColor: AppColors.getBackgroundColor(context),
-      appBar: AppBar(
-        backgroundColor: AppColors.primary,
-        title: Text(
-          'profile.help_center'.tr(),
-          style: kAppTextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: AppColors.appBarForeground,
+    return AppInternetConnectionWrapper(
+      child: Scaffold(
+        backgroundColor: AppColors.getBackgroundColor(context),
+        appBar: AppBar(
+          backgroundColor: AppColors.primary,
+          title: Text(
+            'profile.help_center'.tr(),
+            style: kAppTextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: AppColors.appBarForeground,
+            ),
           ),
+          elevation: 0,
         ),
-        elevation: 0,
+        body:
+            _isLoading
+                ? _buildLoadingState()
+                : _error != null
+                ? _buildErrorState()
+                : Column(
+                  children: [
+                    _buildSearchBar(),
+                    Expanded(
+                      child:
+                          _isSearching
+                              ? _buildSearchResults()
+                              : _buildCategoriesList(),
+                    ),
+                  ],
+                ),
       ),
-      body:
-          _isLoading
-              ? _buildLoadingState()
-              : _error != null
-              ? _buildErrorState()
-              : Column(
-                children: [
-                  _buildSearchBar(),
-                  Expanded(
-                    child:
-                        _isSearching
-                            ? _buildSearchResults()
-                            : _buildCategoriesList(),
-                  ),
-                ],
-              ),
     );
   }
 

@@ -8,6 +8,7 @@ import 'package:martfury/core/app_config.dart';
 import 'package:martfury/src/controller/home_controller.dart';
 import 'package:martfury/src/theme/app_fonts.dart';
 import 'package:martfury/src/theme/app_colors.dart';
+import 'package:martfury/src/utils/app_internet_connection_wrapper.dart';
 import 'package:martfury/src/view/widget/header.dart';
 import 'package:martfury/src/view/widget/product_slider.dart';
 import 'package:martfury/src/view/widget/countdown_timer.dart';
@@ -1498,283 +1499,295 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final HomeController controller = Get.put(HomeController());
 
-    return Column(
-      children: [
-        Header(isCollapsed: _isHeaderCollapsed),
-        Expanded(
-          child: Obx(() {
-            if (controller.isLoading.value) {
-              return _buildLoadingState();
-            }
-
-            if (controller.error.value != null) {
-              final errorStr = controller.error.value.toString().toLowerCase();
-              if (errorStr.contains('503') ||
-                  errorStr.contains('maintenance') ||
-                  errorStr.contains('service unavailable')) {
-                return const SizedBox.shrink();
+    return AppInternetConnectionWrapper(
+      child: Column(
+        children: [
+          Header(isCollapsed: _isHeaderCollapsed),
+          Expanded(
+            child: Obx(() {
+              if (controller.isLoading.value) {
+                return _buildLoadingState();
               }
 
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      context.tr('home.error_loading'),
-                      style: kAppTextStyle(
-                        fontSize: 16,
-                        color: AppColors.error,
-                      ),
-                    ),
-                    Text(
-                      controller.error.value.toString(),
-                      style: kAppTextStyle(
-                        fontSize: 14,
-                        color: AppColors.error,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    ElevatedButton(
-                      onPressed: controller.loadAllData,
-                      child: Text(context.tr('common.retry')),
-                    ),
-                  ],
-                ),
-              );
-            }
+              if (controller.error.value != null) {
+                final errorStr =
+                    controller.error.value.toString().toLowerCase();
+                if (errorStr.contains('503') ||
+                    errorStr.contains('maintenance') ||
+                    errorStr.contains('service unavailable')) {
+                  return const SizedBox.shrink();
+                }
 
-            return RefreshIndicator(
-              onRefresh: controller.loadAllData,
-              child: SingleChildScrollView(
-                controller: _scrollController,
-                physics: const AlwaysScrollableScrollPhysics(),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildAdsSection(context, controller),
-                    _buildFeaturedCategoriesSection(context, controller),
-                    const SizedBox(height: 16),
-                    _buildFeaturedBrandsSection(context, controller),
-                    const SizedBox(height: 16),
-                    if (controller.flashSaleProducts.isNotEmpty) ...[
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16.0,
-                          vertical: 8.0,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              controller.flashSaleName.value,
-                              style: kAppTextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Obx(
-                              () =>
-                                  controller.flashSaleEndTime.value != null
-                                      ? CountdownTimer(
-                                        endTime:
-                                            controller.flashSaleEndTime.value!,
-                                      )
-                                      : const SizedBox.shrink(),
-                            ),
-                          ],
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        context.tr('home.error_loading'),
+                        style: kAppTextStyle(
+                          fontSize: 16,
+                          color: AppColors.error,
                         ),
                       ),
-                      _buildFlashSaleSection(context, controller),
+                      Text(
+                        controller.error.value.toString(),
+                        style: kAppTextStyle(
+                          fontSize: 14,
+                          color: AppColors.error,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      ElevatedButton(
+                        onPressed: controller.loadAllData,
+                        child: Text(context.tr('common.retry')),
+                      ),
                     ],
-                    Obx(
-                      () => Column(
-                        children:
-                            controller.featuredCategories
-                                .map(
-                                  (category) => _buildCategorySection(
-                                    context,
-                                    controller,
-                                    category,
-                                  ),
-                                )
-                                .toList(),
-                      ),
-                    ),
-                    // Blog Posts Section
-                    Obx(() {
-                      // Show section if loading, has posts, or has error
-                      if (controller.blogLoading.value ||
-                          controller.latestBlogPosts.isNotEmpty ||
-                          controller.blogError.value != null) {
-                        return Column(
-                          children: [
-                            const SizedBox(height: 24),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'profile.blog'.tr(),
-                                    style: kAppTextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColors.getPrimaryTextColor(
-                                        context,
-                                      ),
-                                    ),
-                                  ),
-                                  if (!controller.blogLoading.value &&
-                                      controller.latestBlogPosts.isNotEmpty)
-                                    TextButton(
-                                      onPressed: () {
-                                        Get.to(
-                                          () => const BlogView(),
-                                          binding: BlogBinding(),
-                                        );
-                                      },
-                                      child: Text(
-                                        'common.see_all'.tr(),
-                                        style: kAppTextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
-                                          color: AppColors.primary,
-                                        ),
-                                      ),
-                                    ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(height: 12),
-                            if (controller.blogLoading.value)
-                              // Loading skeleton
-                              SizedBox(
-                                height: 280,
-                                child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                  ),
-                                  itemCount: 3,
-                                  itemBuilder: (context, index) {
-                                    return Container(
-                                      width: 280,
-                                      margin: EdgeInsets.only(
-                                        right: index < 2 ? 16 : 0,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: AppColors.getSkeletonColor(
-                                          context,
-                                        ),
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
-                                    );
-                                  },
+                  ),
+                );
+              }
+
+              return RefreshIndicator(
+                onRefresh: controller.loadAllData,
+                child: SingleChildScrollView(
+                  controller: _scrollController,
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildAdsSection(context, controller),
+                      _buildFeaturedCategoriesSection(context, controller),
+                      const SizedBox(height: 16),
+                      _buildFeaturedBrandsSection(context, controller),
+                      const SizedBox(height: 16),
+                      if (controller.flashSaleProducts.isNotEmpty) ...[
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16.0,
+                            vertical: 8.0,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                controller.flashSaleName.value,
+                                style: kAppTextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                              )
-                            else if (controller.blogError.value != null)
-                              // Error state with retry
+                              ),
+                              Obx(
+                                () =>
+                                    controller.flashSaleEndTime.value != null
+                                        ? CountdownTimer(
+                                          endTime:
+                                              controller
+                                                  .flashSaleEndTime
+                                                  .value!,
+                                        )
+                                        : const SizedBox.shrink(),
+                              ),
+                            ],
+                          ),
+                        ),
+                        _buildFlashSaleSection(context, controller),
+                      ],
+                      Obx(
+                        () => Column(
+                          children:
+                              controller.featuredCategories
+                                  .map(
+                                    (category) => _buildCategorySection(
+                                      context,
+                                      controller,
+                                      category,
+                                    ),
+                                  )
+                                  .toList(),
+                        ),
+                      ),
+                      // Blog Posts Section
+                      Obx(() {
+                        // Show section if loading, has posts, or has error
+                        if (controller.blogLoading.value ||
+                            controller.latestBlogPosts.isNotEmpty ||
+                            controller.blogError.value != null) {
+                          return Column(
+                            children: [
+                              const SizedBox(height: 24),
                               Padding(
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 16,
                                 ),
-                                child: Container(
-                                  padding: const EdgeInsets.all(24),
-                                  decoration: BoxDecoration(
-                                    color: AppColors.getCardBackgroundColor(
-                                      context,
-                                    ),
-                                    borderRadius: BorderRadius.circular(12),
-                                    border: Border.all(
-                                      color: AppColors.getBorderColor(context),
-                                      width: 1,
-                                    ),
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      Icon(
-                                        Icons.error_outline,
-                                        size: 48,
-                                        color: AppColors.getHintTextColor(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'profile.blog'.tr(),
+                                      style: kAppTextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColors.getPrimaryTextColor(
                                           context,
                                         ),
                                       ),
-                                      const SizedBox(height: 12),
-                                      Text(
-                                        'common.error_occurred'.tr(),
-                                        style: kAppTextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                          color: AppColors.getPrimaryTextColor(
-                                            context,
+                                    ),
+                                    if (!controller.blogLoading.value &&
+                                        controller.latestBlogPosts.isNotEmpty)
+                                      TextButton(
+                                        onPressed: () {
+                                          Get.to(
+                                            () => const BlogView(),
+                                            binding: BlogBinding(),
+                                          );
+                                        },
+                                        child: Text(
+                                          'common.see_all'.tr(),
+                                          style: kAppTextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600,
+                                            color: AppColors.primary,
                                           ),
                                         ),
-                                        textAlign: TextAlign.center,
                                       ),
-                                      const SizedBox(height: 8),
-                                      Text(
-                                        'blog.failed_to_load'.tr(),
-                                        style: kAppTextStyle(
-                                          fontSize: 14,
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(height: 12),
+                              if (controller.blogLoading.value)
+                                // Loading skeleton
+                                SizedBox(
+                                  height: 280,
+                                  child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                    ),
+                                    itemCount: 3,
+                                    itemBuilder: (context, index) {
+                                      return Container(
+                                        width: 280,
+                                        margin: EdgeInsets.only(
+                                          right: index < 2 ? 16 : 0,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: AppColors.getSkeletonColor(
+                                            context,
+                                          ),
+                                          borderRadius: BorderRadius.circular(
+                                            12,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                )
+                              else if (controller.blogError.value != null)
+                                // Error state with retry
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 16,
+                                  ),
+                                  child: Container(
+                                    padding: const EdgeInsets.all(24),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.getCardBackgroundColor(
+                                        context,
+                                      ),
+                                      borderRadius: BorderRadius.circular(12),
+                                      border: Border.all(
+                                        color: AppColors.getBorderColor(
+                                          context,
+                                        ),
+                                        width: 1,
+                                      ),
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Icon(
+                                          Icons.error_outline,
+                                          size: 48,
                                           color: AppColors.getHintTextColor(
                                             context,
                                           ),
                                         ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                      const SizedBox(height: 16),
-                                      ElevatedButton.icon(
-                                        onPressed:
-                                            () =>
-                                                controller
-                                                    .loadLatestBlogPosts(),
-                                        icon: const Icon(
-                                          Icons.refresh,
-                                          size: 18,
+                                        const SizedBox(height: 12),
+                                        Text(
+                                          'common.error_occurred'.tr(),
+                                          style: kAppTextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600,
+                                            color:
+                                                AppColors.getPrimaryTextColor(
+                                                  context,
+                                                ),
+                                          ),
+                                          textAlign: TextAlign.center,
                                         ),
-                                        label: Text('common.try_again'.tr()),
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: AppColors.primary,
-                                          foregroundColor: Colors.black,
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 20,
-                                            vertical: 10,
+                                        const SizedBox(height: 8),
+                                        Text(
+                                          'blog.failed_to_load'.tr(),
+                                          style: kAppTextStyle(
+                                            fontSize: 14,
+                                            color: AppColors.getHintTextColor(
+                                              context,
+                                            ),
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        const SizedBox(height: 16),
+                                        ElevatedButton.icon(
+                                          onPressed:
+                                              () =>
+                                                  controller
+                                                      .loadLatestBlogPosts(),
+                                          icon: const Icon(
+                                            Icons.refresh,
+                                            size: 18,
+                                          ),
+                                          label: Text('common.try_again'.tr()),
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: AppColors.primary,
+                                            foregroundColor: Colors.black,
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 20,
+                                              vertical: 10,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
+                                )
+                              else
+                                // Success - show blog posts
+                                BlogPostSlider(
+                                  posts: controller.latestBlogPosts,
+                                  onPostTap: (post) {
+                                    Get.to(
+                                      () => BlogPostDetailView(slug: post.slug),
+                                      binding: BlogDetailBinding(
+                                        slug: post.slug,
+                                      ),
+                                    );
+                                  },
                                 ),
-                              )
-                            else
-                              // Success - show blog posts
-                              BlogPostSlider(
-                                posts: controller.latestBlogPosts,
-                                onPostTap: (post) {
-                                  Get.to(
-                                    () => BlogPostDetailView(slug: post.slug),
-                                    binding: BlogDetailBinding(slug: post.slug),
-                                  );
-                                },
-                              ),
-                            const SizedBox(height: 24),
-                          ],
-                        );
-                      }
-                      return const SizedBox.shrink();
-                    }),
-                    const RecentlyViewedSlider(),
-                    const SizedBox(height: 16),
-                  ],
+                              const SizedBox(height: 24),
+                            ],
+                          );
+                        }
+                        return const SizedBox.shrink();
+                      }),
+                      const RecentlyViewedSlider(),
+                      const SizedBox(height: 16),
+                    ],
+                  ),
                 ),
-              ),
-            );
-          }),
-        ),
-      ],
+              );
+            }),
+          ),
+        ],
+      ),
     );
   }
 }

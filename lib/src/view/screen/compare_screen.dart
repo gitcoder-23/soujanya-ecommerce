@@ -4,6 +4,7 @@ import 'package:martfury/src/service/compare_service.dart';
 import 'package:martfury/src/service/cart_service.dart';
 import 'package:martfury/src/theme/app_fonts.dart';
 import 'package:martfury/src/theme/app_colors.dart';
+import 'package:martfury/src/utils/app_internet_connection_wrapper.dart';
 
 class CompareScreen extends StatefulWidget {
   const CompareScreen({super.key});
@@ -62,11 +63,7 @@ class _CompareScreenState extends State<CompareScreen> {
           if (index < rating.floor()) {
             return Icon(Icons.star, color: AppColors.primary, size: 16);
           } else if (index < rating.ceil() && rating % 1 != 0) {
-            return Icon(
-              Icons.star_half,
-              color: AppColors.primary,
-              size: 16,
-            );
+            return Icon(Icons.star_half, color: AppColors.primary, size: 16);
           } else {
             return Icon(
               Icons.star_outline,
@@ -190,26 +187,28 @@ class _CompareScreenState extends State<CompareScreen> {
         Container(
           padding: const EdgeInsets.all(20),
           child: Row(
-            children: List.generate(
-              2,
-              (index) => [
-                if (index > 0) const SizedBox(width: 16),
-                _buildProductImageSkeleton(),
-              ],
-            ).expand((widgets) => widgets).toList(),
+            children:
+                List.generate(
+                  2,
+                  (index) => [
+                    if (index > 0) const SizedBox(width: 16),
+                    _buildProductImageSkeleton(),
+                  ],
+                ).expand((widgets) => widgets).toList(),
           ),
         ),
         // Add to cart buttons skeleton
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Row(
-            children: List.generate(
-              2,
-              (index) => [
-                if (index > 0) const SizedBox(width: 16),
-                _buildButtonSkeleton(),
-              ],
-            ).expand((widgets) => widgets).toList(),
+            children:
+                List.generate(
+                  2,
+                  (index) => [
+                    if (index > 0) const SizedBox(width: 16),
+                    _buildButtonSkeleton(),
+                  ],
+                ).expand((widgets) => widgets).toList(),
           ),
         ),
         const SizedBox(height: 20),
@@ -347,39 +346,45 @@ class _CompareScreenState extends State<CompareScreen> {
             ),
           ),
           const SizedBox(width: 16),
-          ...paddedValues.asMap().entries.map((entry) {
-            int index = entry.key;
-            var value = entry.value;
-            bool isPlaceholder = values.length == 1 && value == '-';
-            return [
-              if (index > 0) const SizedBox(width: 16),
-              Expanded(
-                flex: 3,
-                child: isPlaceholder
-                    ? Text(
-                        '-',
-                        style: kAppTextStyle(
-                          fontSize: 13,
-                          color: AppColors.getSecondaryTextColor(context),
-                        ),
-                      )
-                    : attribute == 'compare.rating'.tr()
-                        ? _buildRatingStars(
-                            double.tryParse(value?.toString() ?? '0') ?? 0,
-                          )
-                        : attribute == 'compare.price'.tr()
+          ...paddedValues
+              .asMap()
+              .entries
+              .map((entry) {
+                int index = entry.key;
+                var value = entry.value;
+                bool isPlaceholder = values.length == 1 && value == '-';
+                return [
+                  if (index > 0) const SizedBox(width: 16),
+                  Expanded(
+                    flex: 3,
+                    child:
+                        isPlaceholder
+                            ? Text(
+                              '-',
+                              style: kAppTextStyle(
+                                fontSize: 13,
+                                color: AppColors.getSecondaryTextColor(context),
+                              ),
+                            )
+                            : attribute == 'compare.rating'.tr()
+                            ? _buildRatingStars(
+                              double.tryParse(value?.toString() ?? '0') ?? 0,
+                            )
+                            : attribute == 'compare.price'.tr()
                             ? _buildPriceText(value)
                             : Text(
-                                value?.toString() ?? '-',
-                                style: kAppTextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w500,
-                                  color: AppColors.getPrimaryTextColor(context),
-                                ),
+                              value?.toString() ?? '-',
+                              style: kAppTextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.getPrimaryTextColor(context),
                               ),
-              ),
-            ];
-          }).expand((widgets) => widgets).toList(),
+                            ),
+                  ),
+                ];
+              })
+              .expand((widgets) => widgets)
+              .toList(),
         ],
       ),
     );
@@ -402,14 +407,15 @@ class _CompareScreenState extends State<CompareScreen> {
                   child: Image.network(
                     product['image_url'] ?? '',
                     fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) => Container(
-                      color: AppColors.getSurfaceColor(context),
-                      child: Icon(
-                        Icons.image_not_supported_outlined,
-                        color: AppColors.getSecondaryTextColor(context),
-                        size: 32,
-                      ),
-                    ),
+                    errorBuilder:
+                        (context, error, stackTrace) => Container(
+                          color: AppColors.getSurfaceColor(context),
+                          child: Icon(
+                            Icons.image_not_supported_outlined,
+                            color: AppColors.getSecondaryTextColor(context),
+                            size: 32,
+                          ),
+                        ),
                   ),
                 ),
               ),
@@ -504,24 +510,26 @@ class _CompareScreenState extends State<CompareScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.getBackgroundColor(context),
-      appBar: AppBar(
-        backgroundColor: AppColors.primary,
-        title: Text(
-          'compare.compare'.tr(),
-          style: kAppTextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: AppColors.appBarForeground,
+    return AppInternetConnectionWrapper(
+      child: Scaffold(
+        backgroundColor: AppColors.getBackgroundColor(context),
+        appBar: AppBar(
+          backgroundColor: AppColors.primary,
+          title: Text(
+            'compare.compare'.tr(),
+            style: kAppTextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: AppColors.appBarForeground,
+            ),
           ),
         ),
-      ),
-      body: _isLoading
-          ? _buildLoadingState()
-          : _products.isEmpty
-              ? _buildEmptyState()
-              : Column(
+        body:
+            _isLoading
+                ? _buildLoadingState()
+                : _products.isEmpty
+                ? _buildEmptyState()
+                : Column(
                   children: [
                     // Show notification message when only one product
                     if (_products.length == 1)
@@ -559,14 +567,19 @@ class _CompareScreenState extends State<CompareScreen> {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          ..._products.asMap().entries.map((entry) {
-                            int index = entry.key;
-                            var product = entry.value;
-                            return [
-                              if (index > 0) const SizedBox(width: 16),
-                              _buildProductCard(product),
-                            ];
-                          }).expand((widgets) => widgets).toList(),
+                          ..._products
+                              .asMap()
+                              .entries
+                              .map((entry) {
+                                int index = entry.key;
+                                var product = entry.value;
+                                return [
+                                  if (index > 0) const SizedBox(width: 16),
+                                  _buildProductCard(product),
+                                ];
+                              })
+                              .expand((widgets) => widgets)
+                              .toList(),
                           if (_products.length == 1) ...[
                             const SizedBox(width: 16),
                             _buildPlaceholderProduct(),
@@ -580,65 +593,76 @@ class _CompareScreenState extends State<CompareScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Row(
                         children: [
-                          ..._products.asMap().entries.map((entry) {
-                            int index = entry.key;
-                            var product = entry.value;
-                            return [
-                              if (index > 0) const SizedBox(width: 16),
-                              Expanded(
-                                child: SizedBox(
-                                  height: 44,
-                                  child: ElevatedButton(
-                                    onPressed: () async {
-                                      final scaffoldMessenger =
-                                          ScaffoldMessenger.of(context);
-                                      try {
-                                        await CartService().createCartItem(
-                                          productId: product['id'].toString(),
-                                          quantity: 1,
-                                        );
-                                        if (mounted) {
-                                          scaffoldMessenger.showSnackBar(
-                                            SnackBar(
-                                              content: Text(
-                                                'product.added_to_cart'.tr(),
-                                              ),
-                                              backgroundColor: AppColors.success,
+                          ..._products
+                              .asMap()
+                              .entries
+                              .map((entry) {
+                                int index = entry.key;
+                                var product = entry.value;
+                                return [
+                                  if (index > 0) const SizedBox(width: 16),
+                                  Expanded(
+                                    child: SizedBox(
+                                      height: 44,
+                                      child: ElevatedButton(
+                                        onPressed: () async {
+                                          final scaffoldMessenger =
+                                              ScaffoldMessenger.of(context);
+                                          try {
+                                            await CartService().createCartItem(
+                                              productId:
+                                                  product['id'].toString(),
+                                              quantity: 1,
+                                            );
+                                            if (mounted) {
+                                              scaffoldMessenger.showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    'product.added_to_cart'
+                                                        .tr(),
+                                                  ),
+                                                  backgroundColor:
+                                                      AppColors.success,
+                                                ),
+                                              );
+                                            }
+                                          } catch (e) {
+                                            if (mounted) {
+                                              scaffoldMessenger.showSnackBar(
+                                                SnackBar(
+                                                  content: Text(e.toString()),
+                                                  backgroundColor:
+                                                      AppColors.error,
+                                                ),
+                                              );
+                                            }
+                                          }
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: AppColors.primary,
+                                          foregroundColor: Colors.black,
+                                          elevation: 0,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                              8,
                                             ),
-                                          );
-                                        }
-                                      } catch (e) {
-                                        if (mounted) {
-                                          scaffoldMessenger.showSnackBar(
-                                            SnackBar(
-                                              content: Text(e.toString()),
-                                              backgroundColor: AppColors.error,
-                                            ),
-                                          );
-                                        }
-                                      }
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: AppColors.primary,
-                                      foregroundColor: Colors.black,
-                                      elevation: 0,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                    ),
-                                    child: Text(
-                                      'product.add_to_cart'.tr(),
-                                      style: kAppTextStyle(
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.black,
+                                          ),
+                                        ),
+                                        child: Text(
+                                          'product.add_to_cart'.tr(),
+                                          style: kAppTextStyle(
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.black,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ),
-                            ];
-                          }).expand((widgets) => widgets).toList(),
+                                ];
+                              })
+                              .expand((widgets) => widgets)
+                              .toList(),
                           if (_products.length == 1) ...[
                             const SizedBox(width: 16),
                             const Expanded(child: SizedBox()),
@@ -685,7 +709,9 @@ class _CompareScreenState extends State<CompareScreen> {
                                     (spec) => _buildAttributeRow(
                                       spec,
                                       _products
-                                          .map((p) => p['specifications']?[spec])
+                                          .map(
+                                            (p) => p['specifications']?[spec],
+                                          )
                                           .toList(),
                                     ),
                                   ),
@@ -695,6 +721,7 @@ class _CompareScreenState extends State<CompareScreen> {
                     ),
                   ],
                 ),
+      ),
     );
   }
 }

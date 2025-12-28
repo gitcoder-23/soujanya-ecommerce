@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:martfury/src/utils/app_internet_connection_wrapper.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:martfury/src/service/order_service.dart';
@@ -302,56 +303,64 @@ class _InvoiceViewerScreenState extends State<InvoiceViewerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.getBackgroundColor(context),
-      appBar: AppBar(
-        backgroundColor: AppColors.primary,
-        title: Text(
-          '${'orders.invoice'.tr()} ${widget.orderCode}',
-          style: kAppTextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: AppColors.appBarForeground,
+    return AppInternetConnectionWrapper(
+      child: Scaffold(
+        backgroundColor: AppColors.getBackgroundColor(context),
+        appBar: AppBar(
+          backgroundColor: AppColors.primary,
+          title: Text(
+            '${'orders.invoice'.tr()} ${widget.orderCode}',
+            style: kAppTextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: AppColors.appBarForeground,
+            ),
           ),
-        ),
-        actions: [
-          if (_invoiceUrl != null) ...[
-            IconButton(
-              icon: Icon(Icons.share, color: AppColors.appBarForeground),
-              onPressed: _shareInvoice,
-              tooltip: 'Share Invoice',
-            ),
-            IconButton(
-              icon: Icon(Icons.open_in_browser, color: AppColors.appBarForeground),
-              onPressed: _openInBrowser,
-              tooltip: 'Open in Browser',
-            ),
-            IconButton(
-              icon:
-                  _isDownloading
-                      ? SizedBox(
-                        width: 20,
-                        height: 20,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            AppColors.appBarForeground,
+          actions: [
+            if (_invoiceUrl != null) ...[
+              IconButton(
+                icon: Icon(Icons.share, color: AppColors.appBarForeground),
+                onPressed: _shareInvoice,
+                tooltip: 'Share Invoice',
+              ),
+              IconButton(
+                icon: Icon(
+                  Icons.open_in_browser,
+                  color: AppColors.appBarForeground,
+                ),
+                onPressed: _openInBrowser,
+                tooltip: 'Open in Browser',
+              ),
+              IconButton(
+                icon:
+                    _isDownloading
+                        ? SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              AppColors.appBarForeground,
+                            ),
                           ),
+                        )
+                        : Icon(
+                          Icons.download,
+                          color: AppColors.appBarForeground,
                         ),
-                      )
-                      : Icon(Icons.download, color: AppColors.appBarForeground),
-              onPressed: _isDownloading ? null : _downloadInvoice,
-              tooltip: 'orders.download_invoice'.tr(),
+                onPressed: _isDownloading ? null : _downloadInvoice,
+                tooltip: 'orders.download_invoice'.tr(),
+              ),
+            ],
+            IconButton(
+              icon: Icon(Icons.refresh, color: AppColors.appBarForeground),
+              onPressed: _loadInvoice,
+              tooltip: 'Refresh',
             ),
           ],
-          IconButton(
-            icon: Icon(Icons.refresh, color: AppColors.appBarForeground),
-            onPressed: _loadInvoice,
-            tooltip: 'Refresh',
-          ),
-        ],
+        ),
+        body: _buildBody(),
       ),
-      body: _buildBody(),
     );
   }
 
